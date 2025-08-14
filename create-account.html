@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar - Sinatriatrans</title>
+    <meta
+      name="description"
+      content="Halaman pendaftaran akun baru untuk Sinatriatrans."
+    />
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/1a56db/ffffff?text=ST"
+      type="image/x-icon"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a56db",
+              secondary: "#0e7490",
+              accent: "#f59e0b",
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      html,
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #94a3b8;
+        border-radius: 5px;
+      }
+      .message-box-container {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        min-width: 300px;
+        max-width: 90%;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- Message Box -->
+    <div id="message-box" class="message-box-container hidden">
+      <div class="bg-green-500 text-white font-bold rounded-lg shadow-xl p-4">
+        <div class="flex justify-between items-center">
+          <span id="message-text">Pesan Anda di sini.</span>
+          <button id="close-message-box" class="text-white ml-4">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Form Container -->
+    <div class="w-full max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg">
+      <div class="text-center mb-6">
+        <a
+          href="index.html"
+          class="flex justify-center items-center space-x-2 mb-4"
+        >
+          <div
+            class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white font-bold text-lg"
+          >
+            ST
+          </div>
+          <span class="text-2xl font-bold text-primary">Sinatriatrans</span>
+        </a>
+        <h1 class="text-3xl font-bold text-gray-800">Daftar Akun</h1>
+        <p class="text-gray-500">Buat akun untuk memulai perjalanan Anda</p>
+      </div>
+
+      <!-- Registration Form -->
+      <form id="register-form" class="space-y-4">
+        <div>
+          <label for="full-name" class="block text-sm font-medium text-gray-700"
+            >Nama Lengkap</label
+          >
+          <input
+            type="text"
+            id="full-name"
+            name="full-name"
+            placeholder="Masukkan nama lengkap Anda"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+            required
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            >Alamat Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="contoh@email.com"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+            required
+          />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700"
+            >Kata Sandi</label
+          >
+          <div class="relative mt-1">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Minimal 6 karakter"
+              class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+              minlength="6"
+              required
+            />
+            <button
+              type="button"
+              id="toggle-password"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div>
+          <label
+            for="confirm-password"
+            class="block text-sm font-medium text-gray-700"
+            >Konfirmasi Kata Sandi</label
+          >
+          <div class="relative mt-1">
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              placeholder="Ulangi kata sandi"
+              class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+              required
+            />
+            <button
+              type="button"
+              id="toggle-confirm-password"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="pt-2">
+          <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+          >
+            Daftar
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-6 text-center text-sm">
+        <p class="text-gray-500">
+          Sudah punya akun?
+          <a
+            href="login-page.html"
+            class="font-medium text-primary hover:underline"
+            >Masuk sekarang</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="absolute bottom-4 text-center w-full text-gray-500 text-sm">
+      <p>
+        &copy; <span id="current-year"></span> Sinatriatrans. All rights
+        reserved.
+      </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Function to show custom message box
+      const showMessageBox = (message, type = "success") => {
+        const messageBox = document.getElementById("message-box");
+        const messageText = document.getElementById("message-text");
+        const closeButton = document.getElementById("close-message-box");
+
+        // Set message and style
+        messageText.textContent = message;
+        messageBox.classList.remove("bg-green-500", "bg-red-500");
+        if (type === "success") {
+          messageBox.classList.add("bg-green-500");
+        } else {
+          messageBox.classList.add("bg-red-500");
+        }
+
+        // Show the message box
+        messageBox.classList.remove("hidden");
+        messageBox.classList.add("animate-slideIn");
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+          messageBox.classList.add("hidden");
+        }, 5000);
+
+        // Close button functionality
+        closeButton.onclick = () => {
+          messageBox.classList.add("hidden");
+        };
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Toggle password visibility
+        const togglePassword = (id, iconId) => {
+          const passwordField = document.getElementById(id);
+          const toggleIcon = document.getElementById(iconId);
+          if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+          } else {
+            passwordField.type = "password";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+          }
+        };
+
+        document
+          .getElementById("toggle-password")
+          .addEventListener("click", () => {
+            togglePassword("password", "toggle-password");
+          });
+
+        document
+          .getElementById("toggle-confirm-password")
+          .addEventListener("click", () => {
+            togglePassword("confirm-password", "toggle-confirm-password");
+          });
+
+        // Handle form submission and save to localStorage
+        const registerForm = document.getElementById("register-form");
+        if (registerForm) {
+          registerForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById("full-name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword =
+              document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+              showMessageBox(
+                "Kata sandi dan konfirmasi kata sandi tidak cocok.",
+                "error"
+              );
+              return;
+            }
+
+            // Check if user already exists in localStorage
+            const existingUser = localStorage.getItem(email);
+            if (existingUser) {
+              showMessageBox("Email ini sudah terdaftar.", "error");
+              return;
+            }
+
+            // Save user data to localStorage
+            // In a real app, this would be sent to a server
+            localStorage.setItem(email, JSON.stringify({ fullName, password }));
+
+            showMessageBox(
+              `Pendaftaran berhasil untuk ${fullName} (${email})! Silakan login.`,
+              "success"
+            );
+            registerForm.reset();
+          });
+        }
+
+        // Set current year in footer
+        const currentYearSpan = document.getElementById("current-year");
+        if (currentYearSpan) {
+          currentYearSpan.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
+  </body>
+</html>

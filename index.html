@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sinatriatrans - Travel & Rental Mobil</title>
+    <meta
+      name="description"
+      content="Sinatriatrans menyediakan layanan travel dan rental mobil terbaik untuk kebutuhan perjalanan Anda."
+    />
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/1a56db/ffffff?text=ST"
+      type="image/x-icon"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a56db", // Warna biru kustom
+              secondary: "#0e7490", // Warna teal kustom
+              accent: "#f59e0b", // Warna kuning kustom
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      html,
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #d1d5db;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #9ca3af;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a href="index.html" class="flex items-center space-x-2">
+          <!-- Logo yang diperbarui: ganti src dengan 'logo.png' dan sesuaikan ukurannya -->
+          <img
+            src="images/logo.png"
+            alt="Sinatriatrans Logo"
+            class="w-12 h-12 full object-cover"
+            onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a56db/ffffff?text=ST'"
+          />
+          <span class="text-xl font-bold text-primary">Sinatriatrans</span>
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a
+            href="index.html"
+            class="text-gray-600 hover:text-primary transition duration-300"
+            >Beranda</a
+          >
+          <a
+            href="rental-list.html"
+            class="text-gray-600 hover:text-primary transition duration-300"
+            >Rental Mobil</a
+          >
+          <a
+            href="#"
+            class="text-gray-600 hover:text-primary transition duration-300"
+            >Tentang Kami</a
+          >
+          <a
+            href="login-page.html"
+            class="bg-primary text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300"
+            >Masuk</a
+          >
+        </div>
+        <!-- User Profile Dropdown - Shown when logged in -->
+            <div id="profile-dropdown-container" class="relative group hidden">
+              <button
+                id="profile-button"
+                class="bg-primary text-white px-5 py-2 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition duration-300"
+              >
+                <i class="fas fa-user-circle"></i>
+                <span id="user-name"></span>
+                <i class="fas fa-chevron-down text-xs"></i>
+              </button>
+              <div
+                class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-40 py-2 right-0"
+              >
+                <a
+                  href="#"
+                  id="logout-button"
+                  class="block px-4 py-2 text-slate-700 hover:bg-slate-100"
+                  >Keluar</a
+                >
+              </div>
+    
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden">
+          <i id="mobile-menu-icon-open" class="fa-solid fa-bars text-2xl"></i>
+          <i
+            id="mobile-menu-icon-close"
+            class="fa-solid fa-xmark text-2xl hidden"
+          ></i>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div
+      id="mobile-menu-overlay"
+      class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
+    >
+      <div class="bg-white h-full w-64 p-6 shadow-lg">
+        <nav class="flex flex-col space-y-4">
+          <a
+            href="index.html"
+            class="mobile-menu-item text-lg font-medium text-gray-800 hover:text-primary"
+            >Beranda</a
+          >
+          <a
+            href="rental-list.html"
+            class="mobile-menu-item text-lg font-medium text-gray-800 hover:text-primary"
+            >Rental Mobil</a
+          >
+          <a
+            href="#"
+            class="mobile-menu-item text-lg font-medium text-gray-800 hover:text-primary"
+            >Tentang Kami</a
+          >
+          <a
+            href="login-page.html"
+            class="mobile-menu-item bg-primary text-white text-center px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300"
+            >Masuk</a
+          >
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <!-- Hero Section -->
+      <section
+        class="bg-cover bg-center h-96 md:h-[600px] flex items-center justify-center relative"
+        style="
+          background-image: url('images/Yogyakarta.jpg');
+        "
+      >
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="text-center text-white z-10 px-4">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            Perjalanan Nyaman, Harga Terjangkau
+          </h1>
+          <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            Sinatriatrans menyediakan layanan travel dan rental mobil terbaik
+            untuk segala kebutuhan perjalanan Anda.
+          </p>
+          <a
+            href="#featured-rentals"
+            class="bg-accent text-gray-900 px-8 py-3 rounded-full font-semibold text-lg hover:bg-amber-500 transition duration-300"
+          >
+            Lihat Armada
+          </a>
+        </div>
+      </section>
+
+      <!-- Featured Services Section -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 text-center">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Layanan Kami</h2>
+          <p class="text-gray-600 mb-12 max-w-3xl mx-auto">
+            Kami menyediakan beragam layanan untuk memenuhi kebutuhan mobilitas
+            Anda.
+          </p>
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+          >
+            <!-- Service 1 -->
+            <div
+              class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300"
+            >
+              <div
+                class="flex items-center justify-center bg-primary text-white rounded-full h-16 w-16 mb-4 mx-auto"
+              >
+                <i class="fas fa-car text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Rental Mobil Harian
+              </h3>
+              <p class="text-gray-600">
+                Sewa mobil untuk kebutuhan harian, baik untuk dalam kota maupun
+                perjalanan singkat.
+              </p>
+              <a
+                href="paket1.html"
+                class="text-primary font-medium mt-4 inline-block hover:underline"
+                >Detail Paket <i class="fas fa-arrow-right ml-1"></i
+              ></a>
+            </div>
+
+            <!-- Service 2 -->
+            <div
+              class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300"
+            >
+              <div
+                class="flex items-center justify-center bg-secondary text-white rounded-full h-16 w-16 mb-4 mx-auto"
+              >
+                <i class="fas fa-calendar-week text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Rental Mobil Mingguan
+              </h3>
+              <p class="text-gray-600">
+                Solusi fleksibel untuk kebutuhan transportasi selama seminggu
+                penuh.
+              </p>
+              <a
+                href="paket2.html"
+                class="text-secondary font-medium mt-4 inline-block hover:underline"
+                >Detail Paket <i class="fas fa-arrow-right ml-1"></i
+              ></a>
+            </div>
+
+            <!-- Service 3 -->
+            <div
+              class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300"
+            >
+              <div
+                class="flex items-center justify-center bg-accent text-white rounded-full h-16 w-16 mb-4 mx-auto"
+              >
+                <i class="fas fa-calendar-alt text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Rental Mobil Bulanan
+              </h3>
+              <p class="text-gray-600">
+                Pilihan hemat untuk kebutuhan jangka panjang tanpa repot.
+              </p>
+              <a
+                href="paket3.html"
+                class="text-accent font-medium mt-4 inline-block hover:underline"
+                >Detail Paket <i class="fas fa-arrow-right ml-1"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Rentals Section -->
+      <section id="featured-rentals" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+            Armada Unggulan
+          </h2>
+          <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Pilihan terbaik dari armada kami yang selalu terawat dan siap
+            mengantar Anda.
+          </p>
+          <div
+            id="featured-rentals-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <!-- Rental cards will be injected here by JavaScript -->
+          </div>
+          <div class="text-center mt-12">
+            <a
+              href="rental-list.html"
+              class="bg-gray-800 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-700 transition duration-300"
+              >Lihat Semua Mobil</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us Section -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+            Mengapa Memilih Kami?
+          </h2>
+          <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Keunggulan kami yang membuat perjalanan Anda lebih berkesan.
+          </p>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center"
+          >
+            <!-- Feature 1 -->
+            <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+              <div
+                class="flex items-center justify-center bg-primary text-white rounded-full h-16 w-16 mb-4 mx-auto"
+              >
+                <i class="fas fa-shield-alt text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Aman & Terpercaya
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Armada terawat dengan baik dan layanan pelanggan profesional.
+              </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+              <div
+                class="flex items-center justify-center bg-secondary text-white rounded-full h-16 w-16 mb-4 mx-auto"
+              >
+                <i class="fas fa-dollar-sign text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Harga Kompetitif
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Harga terbaik tanpa mengurangi kualitas layanan.
+              </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+              <div
+                class="flex items-center justify-center bg-accent text-white rounded-full h-16 w-16 mb-4 mx-auto"
+              >
+                <i class="fas fa-clock text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Layanan 24/7
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Siap membantu Anda kapan pun dan di mana pun.
+              </p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+              <div
+                class="flex items-center justify-center bg-primary text-white rounded-full h-16 w-16 mb-4 mx-auto"
+              >
+                <i class="fas fa-map-marker-alt text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Jangkauan Luas
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Melayani berbagai rute perjalanan di seluruh wilayah.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Success/Error Message Box -->
+    <div
+      id="message-box"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[999] hidden"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full mx-auto"
+        role="alert"
+      >
+        <p id="message-text" class="text-center text-gray-800"></p>
+        <div class="mt-4 text-center">
+          <button
+            id="message-box-close"
+            class="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-300"
+          >
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- About -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Sinatriatrans</h3>
+          <p class="text-gray-400 text-sm">
+            Layanan travel dan rental mobil terbaik untuk segala kebutuhan
+            perjalanan Anda.
+          </p>
+          <div class="mt-4 flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-white"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" class="text-gray-400 hover:text-white"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Tautan Cepat</h3>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="rental-list.html"
+                class="text-gray-400 hover:text-white text-sm"
+                >Layanan Kami</a
+              >
+            </li>
+            <li>
+              <a
+                href="rental-list.html"
+                class="text-gray-400 hover:text-white text-sm"
+                >Armada Kami</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white text-sm"
+                >Syarat & Ketentuan</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white text-sm"
+                >Kebijakan Privasi</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Hubungi Kami</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li class="flex items-center space-x-2">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Jl. Contoh No. 123, Kota Contoh</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i class="fas fa-envelope"></i>
+              <span>info@sinatriatrans.com</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i class="fas fa-phone"></i>
+              <span>+62 123-456-7890</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Ikuti Kami</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            Dapatkan penawaran eksklusif langsung ke kotak masuk Anda.
+          </p>
+          <form class="flex">
+            <input
+              type="email"
+              placeholder="Email Anda"
+              class="w-full px-4 py-2 rounded-l-full focus:outline-none text-gray-800"
+            />
+            <button
+              type="submit"
+              class="bg-primary text-white px-4 rounded-r-full hover:bg-blue-700 transition duration-300"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div
+        class="container mx-auto px-6 mt-8 text-center text-gray-500 text-sm"
+      >
+        <p>
+          &copy; <span id="current-year"></span> Sinatriatrans. All rights
+          reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Data rental mobil
+      const allRentals = [
+        {
+          id: 1,
+          name: "Toyota Avanza",
+          image: "images/avanza.jpg",
+          passengers: 7,
+          transmission: "Manual",
+          pricePerDay: "350.000",
+        },
+        {
+          id: 2,
+          name: "Honda Brio",
+          image: "images/brio.jpg",
+          passengers: 4,
+          transmission: "Otomatis",
+          pricePerDay: "300.000",
+        },
+        {
+          id: 4,
+          name: "Toyota Innova Reborn",
+          image: "images/reborn.png",
+          passengers: 7,
+          transmission: "Otomatis",
+          pricePerDay: "600.000",
+        },
+      ];
+
+      const featuredRentals = allRentals.slice(0, 3); // Ambil 3 mobil pertama sebagai unggulan
+
+      // Fungsi untuk membuat card rental mobil
+      const createRentalCard = (rental) => {
+        return `
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+                    <img src="${rental.image}" alt="${rental.name}" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x250/1a56db/ffffff?text=${rental.name}';"/>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800">${rental.name}</h3>
+                        <div class="flex items-center text-gray-500 mt-2 text-sm space-x-4">
+                            <div class="flex items-center space-x-1">
+                                <i class="fas fa-users"></i>
+                                <span>${rental.passengers} Penumpang</span>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <i class="fas fa-cogs"></i>
+                                <span>${rental.transmission}</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-primary text-xl font-bold">Rp ${rental.pricePerDay}/hari</span>
+                            <a href="booking-page.html?package=harian" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-sm font-medium">
+                                Sewa Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Render Featured Rental Cards
+        const featuredRentalsGrid = document.getElementById(
+          "featured-rentals-grid"
+        );
+        if (featuredRentalsGrid) {
+          featuredRentalsGrid.innerHTML = featuredRentals
+            .map(createRentalCard)
+            .join("");
+        }
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenuOverlay = document.getElementById(
+          "mobile-menu-overlay"
+        );
+        const mobileMenuIconOpen = document.getElementById(
+          "mobile-menu-icon-open"
+        );
+        const mobileMenuIconClose = document.getElementById(
+          "mobile-menu-icon-close"
+        );
+        const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
+
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenuOverlay.classList.toggle("hidden");
+            mobileMenuIconOpen.classList.toggle("hidden");
+            mobileMenuIconClose.classList.toggle("hidden");
+          });
+        }
+
+        mobileMenuItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            mobileMenuOverlay.classList.add("hidden");
+            mobileMenuIconOpen.classList.remove("hidden");
+            mobileMenuIconClose.classList.add("hidden");
+          });
+        });
+
+        // Set current year in footer
+        const currentYearSpan = document.getElementById("current-year");
+        if (currentYearSpan) {
+          currentYearSpan.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
+  </body>
+</html>
