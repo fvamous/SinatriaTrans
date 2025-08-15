@@ -60,106 +60,87 @@
     </style>
   </head>
 
-  <body class="bg-gray-100 flex flex-col min-h-screen">
-    <!-- Navbar -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-      <nav
-        class="container mx-auto px-6 py-4 flex items-center justify-between"
-      >
-        <a href="index.html" class="flex items-center space-x-2">
-          <!-- Logo yang diperbarui: ganti src dengan 'logo.png' dan sesuaikan ukurannya -->
-          <img
-            src="images/logo.png"
-            alt="Sinatriatrans Logo"
-            class="w-12 h-12 full object-cover"
-            onerror="this.onerror=null; this.src='https://placehold.co/48x48/1a56db/ffffff?text=ST'"
-          />
-          <span class="text-xl font-bold text-primary">Sinatriatrans</span>
-        </a>
-        <div class="hidden md:flex space-x-6 items-center">
-          <a
-            href="index.html"
-            class="text-gray-600 hover:text-primary transition duration-300"
-            >Beranda</a
-          >
-          <a
-            href="rental-list.html"
-            class="text-gray-600 hover:text-primary transition duration-300"
-            >Rental Mobil</a
-          >
-          <a
-            href="#"
-            class="text-gray-600 hover:text-primary transition duration-300"
-            >Tentang Kami</a
-          >
-          <a
-            href="login-page.html"
-            class="bg-primary text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300"
-            >Masuk</a
-          >
-        </div>
-        <!-- User Profile Dropdown - Shown when logged in -->
-            <div id="profile-dropdown-container" class="relative group hidden">
-              <button
-                id="profile-button"
-                class="bg-primary text-white px-5 py-2 rounded-full flex items-center space-x-2 hover:bg-blue-700 transition duration-300"
-              >
-                <i class="fas fa-user-circle"></i>
-                <span id="user-name"></span>
-                <i class="fas fa-chevron-down text-xs"></i>
-              </button>
-              <div
-                class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-40 py-2 right-0"
-              >
-                <a
-                  href="#"
-                  id="logout-button"
-                  class="block px-4 py-2 text-slate-700 hover:bg-slate-100"
-                  >Keluar</a
-                >
-              </div>
-    
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="md:hidden">
-          <i id="mobile-menu-icon-open" class="fa-solid fa-bars text-2xl"></i>
-          <i
-            id="mobile-menu-icon-close"
-            class="fa-solid fa-xmark text-2xl hidden"
-          ></i>
-        </button>
-      </nav>
-    </header>
-
-    <!-- Mobile Menu Overlay -->
-    <div
-      id="mobile-menu-overlay"
-      class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
+ <!-- Header/Navbar -->
+    <header
+      class="bg-white sticky top-0 z-50 shadow-md transition-all duration-300"
     >
-      <div class="bg-white h-full w-64 p-6 shadow-lg">
-        <nav class="flex flex-col space-y-4">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <!-- Logo - Diperbarui untuk menyertakan gambar -->
+        <a href="index.html" class="flex items-center text-2xl font-bold text-primary">
+          <img 
+            src="images/logo.png" 
+            alt="Sinatriatrans Logo" 
+            class="h-10 w-10 mr-2 rounded-lg"
+          />
+          Sinatria<span class="text-secondary">trans</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-6">
           <a
             href="index.html"
-            class="mobile-menu-item text-lg font-medium text-gray-800 hover:text-primary"
+            class="text-gray-600 hover:text-primary transition-colors duration-300"
             >Beranda</a
           >
           <a
-            href="rental-list.html"
-            class="mobile-menu-item text-lg font-medium text-gray-800 hover:text-primary"
-            >Rental Mobil</a
+            href="#featured-rentals"
+            class="text-gray-600 hover:text-primary transition-colors duration-300"
+            >Sewa Mobil</a
           >
           <a
-            href="#"
-            class="mobile-menu-item text-lg font-medium text-gray-800 hover:text-primary"
-            >Tentang Kami</a
+            href="#travel-packages"
+            class="text-gray-600 hover:text-primary transition-colors duration-300"
+            >Paket Travel</a
           >
           <a
             href="login-page.html"
-            class="mobile-menu-item bg-primary text-white text-center px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300"
-            >Masuk</a
+            class="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-300"
+            >Login</a
           >
         </nav>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="lg:hidden text-gray-600 focus:outline-none"
+          aria-label="Toggle mobile menu"
+        >
+          <i id="mobile-menu-icon-open" class="fas fa-bars text-2xl"></i>
+          <i id="mobile-menu-icon-close" class="fas fa-times text-2xl hidden"></i>
+        </button>
       </div>
-    </div>
+
+      <!-- Mobile Menu Overlay -->
+      <div
+        id="mobile-menu-overlay"
+        class="lg:hidden fixed inset-0 z-40 bg-white/90 backdrop-blur-sm hidden"
+      >
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+          <a
+            href="index.html"
+            class="mobile-menu-item text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Beranda</a
+          >
+          <a
+            href="#featured-rentals"
+            class="mobile-menu-item text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Sewa Mobil</a
+          >
+          <a
+            href="#travel-packages"
+            class="mobile-menu-item text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Paket Travel</a
+          >
+          <a
+            href="login-page.html"
+            class="mobile-menu-item bg-primary text-white px-8 py-4 rounded-full text-xl font-bold hover:bg-blue-700 transition duration-300"
+            >Login</a
+          >
+        </div>
+      </div>
+    </header>
 
     <!-- Main Content -->
     <main class="flex-grow">
@@ -567,7 +548,7 @@
             .join("");
         }
 
-        // --- Mobile Menu Toggle ---
+         // --- Perbaikan pada Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById("mobile-menu-button");
         const mobileMenuOverlay = document.getElementById(
           "mobile-menu-overlay"
@@ -580,20 +561,23 @@
         );
         const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
 
-        if (mobileMenuButton) {
-          mobileMenuButton.addEventListener("click", () => {
+        // Function to toggle the mobile menu state
+        function toggleMobileMenu() {
+            // Toggle the 'hidden' class on the overlay
             mobileMenuOverlay.classList.toggle("hidden");
+            // Toggle the 'hidden' class on the menu icons
             mobileMenuIconOpen.classList.toggle("hidden");
             mobileMenuIconClose.classList.toggle("hidden");
-          });
         }
 
+        // Event listener for the main mobile menu button
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener("click", toggleMobileMenu);
+        }
+
+        // Event listeners for each mobile menu item to close the menu
         mobileMenuItems.forEach((item) => {
-          item.addEventListener("click", () => {
-            mobileMenuOverlay.classList.add("hidden");
-            mobileMenuIconOpen.classList.remove("hidden");
-            mobileMenuIconClose.classList.add("hidden");
-          });
+          item.addEventListener("click", toggleMobileMenu);
         });
 
         // Set current year in footer
