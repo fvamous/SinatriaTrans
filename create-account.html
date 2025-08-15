@@ -32,6 +32,171 @@
         },
       };
     </script>
+    <!-- Navbar -->
+    <nav
+      class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
+    >
+       <div class="px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+        <!-- Logo/Brand -->
+        <a href="#home" class="flex items-center space-x-3">
+          <img
+            src="images/logo.png"
+            alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
+            class="h-10 w-auto object-contain"
+          />
+          <span
+            class="text-white text-3xl font-bold tracking-wider hover:text-gray-100 transition duration-300"
+          >
+            Sinatriatrans
+          </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-white focus:outline-none p-2 rounded-md hover:bg-blue-700 transition duration-300"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="mobile-menu-icon-open"
+                class="hidden"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+              <path
+                id="mobile-menu-icon-close"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div id="desktop-menu" class="hidden lg:flex items-center space-x-8">
+          <ul class="lg:flex lg:space-x-8 space-y-4 lg:space-y-0 mt-4 lg:mt-0">
+            <li>
+              <a
+                href="index.html#home"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Beranda
+              </a>
+            </li>
+            <li>
+              <a
+                href="index.html#travel-packages"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Paket Travel
+              </a>
+            </li>
+            <li>
+              <a
+                href="rental-list.html"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Rental Mobil
+              </a>
+            </li>
+            <li>
+              <a
+                href="booking-page.html"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Pemesanan
+              </a>
+            </li>
+            <li>
+              <a
+                href="index.html#tentang-kami"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a
+                href="index.html#kontak"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Kontak
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Overlay (untuk tampilan mobile saat dibuka) -->
+      <div
+        id="mobile-menu-overlay"
+        class="lg:hidden bg-secondary mt-4 p-4 rounded-lg shadow-inner hidden"
+      >
+        <ul class="flex flex-col space-y-4">
+          <li>
+            <a
+              href="index.html"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Beranda
+            </a>
+          </li>
+          <li>
+            <a
+              href="index.html#travel-packages"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Paket Travel
+            </a>
+          </li>
+          <li>
+            <a
+              href="#rental-list.html"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Rental Mobil
+            </a>
+          </li>
+          <li>
+            <a
+              href="booking-page.html"
+              class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+            >
+              Pemesanan
+            </a>
+          </li>
+          <li>
+            <a
+              href="index.html#tentang-kami"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Tentang Kami
+            </a>
+          </li>
+          <li>
+            <a
+              href="index.html#kontak"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Kontak
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
 
     <!-- Font Awesome for icons -->
     <link
@@ -69,6 +234,7 @@
     </style>
   </head>
   <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
     <!-- Message Box -->
     <div id="message-box" class="message-box-container hidden">
       <div class="bg-green-500 text-white font-bold rounded-lg shadow-xl p-4">
@@ -82,16 +248,17 @@
     </div>
 
     <!-- Register Form Container -->
-    <div class="w-full max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg">
+    <div class="bg-gray-200 p-8 rounded-xl shadow-lg w-full max-w-7xl mx-auto">
       <div class="text-center mb-6">
         <a
-          href="index.html"
+          href="#"
           class="flex justify-center items-center space-x-2 mb-4"
         >
           <div
-            class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white font-bold text-lg"
+            class="w-8 h-8 flex items-center justify-center bg-primary 
+            text-white font-bold text-lg"
           >
-            ST
+            <img src="images/logo.png">
           </div>
           <span class="text-2xl font-bold text-primary">Sinatriatrans</span>
         </a>
