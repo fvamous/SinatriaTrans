@@ -65,7 +65,7 @@
       class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
     >
       <div
-        class="px-4 py-4 flex justify-between items-center"
+        class="flex justify-between items-center"
       >
         <!-- Logo - Diperbarui untuk menyertakan gambar -->
         <a href="#home" class="flex items-center space-x-3">
@@ -81,66 +81,60 @@
           </span>
         </a>
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center space-x-6">
+       <nav class="hidden md:flex justify-between space-x-6 text-white text-lg">
           <a
             href="index.html"
-            class="text-white hover:text-primary transition-colors duration-300"
+            class="hover:text-accent transition duration-300"
             >Beranda</a
           >
           <a
-            href="#featured-rentals"
-            class="text-white hover:text-primary transition-colors duration-300"
-            >Sewa Mobil</a
+            href="rental-list.html"
+            class="hover:text-accent transition duration-300"
+            >Rental Mobil</a
           >
           <a
-            href="#travel-packages"
-            class="text-white hover:text-primary transition-colors duration-300"
-            >Paket Travel</a
-          >
-          <a
-            href="login-page.html"
-            class="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-300"
-            >Login</a
+            href="booking-page.html"
+            class="hover:text-accent transition duration-300"
+            >Pesan</a
           >
         </nav>
-
+        <!-- Kontainer untuk tombol Login/Logout dan ikon profil -->
+        <div id="auth-container" class="hidden md:block"></div>
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-button"
-          class="lg:hidden text-gray-600 focus:outline-none"
+          class="text-white text-2xl md:hidden"
           aria-label="Toggle mobile menu"
         >
-          <i id="mobile-menu-icon-open" class="fas fa-bars text-2xl"></i>
-          <i id="mobile-menu-icon-close" class="fas fa-times text-2xl hidden"></i>
+          <i id="mobile-menu-icon-open" class="fas fa-bars"></i>
+          <i id="mobile-menu-icon-close" class="fas fa-times hidden"></i>
         </button>
       </div>
-
       <!-- Mobile Menu Overlay -->
       <div
         id="mobile-menu-overlay"
-        class="lg:hidden fixed inset-0 z-40 bg-white/90 backdrop-blur-sm hidden"
+        class="fixed inset-0 bg-slate-900 bg-opacity-75 z-50 hidden"
       >
-        <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <div
+          id="mobile-auth-container"
+          class="flex flex-col justify-between min-h-screen"
+        >
           <a
             href="index.html"
-            class="mobile-menu-item text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300"
             >Beranda</a
           >
           <a
-            href="#featured-rentals"
-            class="mobile-menu-item text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
-            >Sewa Mobil</a
+            href="rental-list.html"
+            class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300"
+            >Rental Mobil</a
           >
           <a
-            href="#travel-packages"
-            class="mobile-menu-item text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
-            >Paket Travel</a
+            href="booking-page.html"
+            class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300"
+            >Pesan</a
           >
-          <a
-            href="login-page.html"
-            class="mobile-menu-item bg-primary text-white px-8 py-4 rounded-full text-xl font-bold hover:bg-blue-700 transition duration-300"
-            >Login</a
-          >
+          <!-- Tombol login/logout untuk menu mobile akan ditambahkan di sini oleh JS -->
         </div>
       </div>
     </header>
@@ -149,13 +143,13 @@
     <main class="flex-grow">
       <!-- Hero Section -->
       <section
-        class="bg-cover bg-center h-96 md:h-[600px] flex items-center justify-center relative"
+        class="bg-cover bg-center h-96 md:h-[861px] flex items-center justify-center relative"
         style="
           background-image: url('images/Yogyakarta.jpg');
         "
       >
         <div class="absolute inset-0 bg-black opacity-50"></div>
-        <div class="text-center text-white z-10 px-4">
+        <div class="text-center text-white z-10 px-2">
           <h1 class="text-4xl md:text-6xl font-bold mb-4">
             Perjalanan Nyaman, Harga Terjangkau
           </h1>
@@ -692,7 +686,7 @@
             .join("");
         }
 
-         // --- Perbaikan pada Mobile Menu Toggle ---
+        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById("mobile-menu-button");
         const mobileMenuOverlay = document.getElementById(
           "mobile-menu-overlay"
@@ -705,24 +699,95 @@
         );
         const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
 
-        // Function to toggle the mobile menu state
-        function toggleMobileMenu() {
-            // Toggle the 'hidden' class on the overlay
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener("click", () => {
             mobileMenuOverlay.classList.toggle("hidden");
-            // Toggle the 'hidden' class on the menu icons
             mobileMenuIconOpen.classList.toggle("hidden");
             mobileMenuIconClose.classList.toggle("hidden");
+          });
         }
 
-        // Event listener for the main mobile menu button
-        if (mobileMenuButton) {
-          mobileMenuButton.addEventListener("click", toggleMobileMenu);
-        }
-
-        // Event listeners for each mobile menu item to close the menu
         mobileMenuItems.forEach((item) => {
-          item.addEventListener("click", toggleMobileMenu);
+          item.addEventListener("click", () => {
+            mobileMenuOverlay.classList.add("hidden");
+            mobileMenuIconOpen.classList.remove("hidden");
+            mobileMenuIconClose.classList.add("hidden");
+          });
         });
+
+        // =======================================================
+        // Bagian baru untuk menangani status otentikasi
+        // =======================================================
+        const authContainer = document.getElementById("auth-container");
+        const mobileAuthContainer = document.getElementById(
+          "mobile-auth-container"
+        );
+
+        function renderAuthStatus() {
+          // Ambil status login dari localStorage
+          const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+          const loggedInUser = JSON.parse(
+            localStorage.getItem("loggedInUser") || "{}"
+          );
+
+          if (isLoggedIn) {
+            // Jika sudah login, tampilkan ikon profil dan tombol logout
+            authContainer.innerHTML = `
+                <div class="flex items-center space-x-4">
+                    <span class="text-white font-medium hidden lg:inline">${loggedInUser.fullName}</span>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-300 text-slate-800 flex items-center justify-center text-lg font-bold" title="Profil">
+                        ${loggedInUser.initials}
+                    </a>
+                    <button id="logout-button" class="bg-accent text-white px-4 py-2 rounded-full hover:bg-yellow-600 transition duration-300">
+                        Logout
+                    </button>
+                </div>
+            `;
+            // Tambahkan tombol logout ke mobile menu juga
+            mobileAuthContainer.innerHTML += `
+              <button id="logout-button-mobile" class="bg-accent text-white px-6 py-3 rounded-full hover:bg-yellow-600 transition duration-300 mt-8">
+                  Logout
+              </button>
+            `;
+          } else {
+            // Jika belum login, tampilkan tombol login
+            authContainer.innerHTML = `
+                <a href="login-page.html" class="bg-accent text-white px-4 py-2 rounded-full hover:bg-yellow-600 transition duration-300">
+                    Login
+                </a>
+            `;
+            // Tambahkan tombol login ke mobile menu juga
+            mobileAuthContainer.innerHTML += `
+              <a href="login-page.html" class="mobile-menu-item bg-accent text-white px-6 py-3 rounded-full hover:bg-yellow-600 transition duration-300 mt-8">
+                  Login
+              </a>
+            `;
+          }
+
+          // Tambahkan event listener untuk tombol logout
+          const logoutButton = document.getElementById("logout-button");
+          const logoutButtonMobile = document.getElementById(
+            "logout-button-mobile"
+          );
+          if (logoutButton) {
+            logoutButton.addEventListener("click", () => {
+              localStorage.removeItem("isLoggedIn");
+              localStorage.removeItem("loggedInUser");
+              window.location.href = "index.html"; // Redirect ke halaman beranda
+            });
+          }
+          if (logoutButtonMobile) {
+            logoutButtonMobile.addEventListener("click", () => {
+              localStorage.removeItem("isLoggedIn");
+              localStorage.removeItem("loggedInUser");
+              window.location.href = "index.html"; // Redirect ke halaman beranda
+            });
+          }
+        }
+
+        // Panggil fungsi ini saat halaman dimuat
+        renderAuthStatus();
+
 
         // Set current year in footer
         const currentYearSpan = document.getElementById("current-year");

@@ -32,172 +32,6 @@
         },
       };
     </script>
-    <!-- Navbar -->
-    <nav
-      class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
-    >
-       <div class="px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4">
-        <!-- Logo/Brand -->
-        <a href="#home" class="flex items-center space-x-3">
-          <img
-            src="images/logo.png"
-            alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
-            class="h-10 w-auto object-contain"
-          />
-          <span
-            class="text-white text-3xl font-bold tracking-wider hover:text-gray-100 transition duration-300"
-          >
-            Sinatriatrans
-          </span>
-        </a>
-
-        <!-- Mobile Menu Button -->
-        <div class="lg:hidden">
-          <button
-            id="mobile-menu-button"
-            class="text-white focus:outline-none p-2 rounded-md hover:bg-blue-700 transition duration-300"
-          >
-            <svg
-              class="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                id="mobile-menu-icon-open"
-                class="hidden"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-              <path
-                id="mobile-menu-icon-close"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Desktop Menu -->
-        <div id="desktop-menu" class="hidden lg:flex items-center space-x-8">
-          <ul class="lg:flex lg:space-x-8 space-y-4 lg:space-y-0 mt-4 lg:mt-0">
-            <li>
-              <a
-                href="index.html#home"
-                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
-              >
-                Beranda
-              </a>
-            </li>
-            <li>
-              <a
-                href="index.html#travel-packages"
-                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
-              >
-                Paket Travel
-              </a>
-            </li>
-            <li>
-              <a
-                href="rental-list.html"
-                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
-              >
-                Rental Mobil
-              </a>
-            </li>
-            <li>
-              <a
-                href="booking-page.html"
-                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
-              >
-                Pemesanan
-              </a>
-            </li>
-            <li>
-              <a
-                href="index.html#tentang-kami"
-                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
-              >
-                Tentang Kami
-              </a>
-            </li>
-            <li>
-              <a
-                href="index.html#kontak"
-                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
-              >
-                Kontak
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Overlay (untuk tampilan mobile saat dibuka) -->
-      <div
-        id="mobile-menu-overlay"
-        class="lg:hidden bg-secondary mt-4 p-4 rounded-lg shadow-inner hidden"
-      >
-        <ul class="flex flex-col space-y-4">
-          <li>
-            <a
-              href="index.html"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
-            >
-              Beranda
-            </a>
-          </li>
-          <li>
-            <a
-              href="index.html#travel-packages"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
-            >
-              Paket Travel
-            </a>
-          </li>
-          <li>
-            <a
-              href="#rental-list.html"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
-            >
-              Rental Mobil
-            </a>
-          </li>
-          <li>
-            <a
-              href="booking-page.html"
-              class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
-            >
-              Pemesanan
-            </a>
-          </li>
-          <li>
-            <a
-              href="index.html#tentang-kami"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
-            >
-              Tentang Kami
-            </a>
-          </li>
-          <li>
-            <a
-              href="index.html#kontak"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
-            >
-              Kontak
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-
     <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
@@ -217,221 +51,330 @@
       }
       ::-webkit-scrollbar-track {
         background: #f1f5f9;
+        border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb {
         background: #94a3b8;
-        border-radius: 5px;
+        border-radius: 10px;
       }
-      .message-box-container {
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+      }
+      .message-box {
         position: fixed;
         top: 20px;
         left: 50%;
         transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-        min-width: 300px;
-        max-width: 90%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
       }
     </style>
   </head>
-  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-
-    <!-- Message Box -->
-    <div id="message-box" class="message-box-container hidden">
-      <div class="bg-green-500 text-white font-bold rounded-lg shadow-xl p-4">
-        <div class="flex justify-between items-center">
-          <span id="message-text">Pesan Anda di sini.</span>
-          <button id="close-message-box" class="text-white ml-4">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Register Form Container -->
-    <div class="bg-gray-200 p-8 rounded-xl shadow-lg w-full max-w-7xl mx-auto">
-      <div class="text-center mb-6">
-        <a
-          href="#"
-          class="flex justify-center items-center space-x-2 mb-4"
-        >
-          <div
-            class="w-8 h-8 flex items-center justify-center bg-primary 
-            text-white font-bold text-lg"
+<body
+    class="bg-slate-100 flex flex-col min-h-screen font-inter text-slate-800"
+  >
+    <!-- Header -->
+    <header class="bg-primary shadow-md">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <!-- Logo/Brand -->
+        <a href="#home" class="flex items-center space-x-3">
+          <img
+            src="images/logo.png"
+            alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
+            class="h-10 w-auto object-contain"
+          />
+          <span
+            class="text-white text-3xl font-bold tracking-wider hover:text-gray-100 transition duration-300"
           >
-            <img src="images/logo.png">
-          </div>
-          <span class="text-2xl font-bold text-primary">Sinatriatrans</span>
+            Sinatriatrans
+          </span>
         </a>
-        <h1 class="text-3xl font-bold text-gray-800">Daftar Akun</h1>
-        <p class="text-gray-500">Buat akun untuk memulai perjalanan Anda</p>
-      </div>
 
-      <!-- Registration Form -->
-      <form id="register-form" class="space-y-4">
-        <div>
-          <label for="full-name" class="block text-sm font-medium text-gray-700"
-            >Nama Lengkap</label
+        <nav class="hidden md:flex space-x-6 text-white text-lg">
+          <a
+            href="index.html"
+            class="hover:text-accent transition duration-300"
+            >Beranda</a
           >
-          <input
-            type="text"
-            id="full-name"
-            name="full-name"
-            placeholder="Masukkan nama lengkap Anda"
-            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
-            required
-          />
+          <a
+            href="rental-list.html"
+            class="hover:text-accent transition duration-300"
+            >Rental Mobil</a
+          >
+          <a
+            href="booking-page.html"
+            class="hover:text-accent transition duration-300"
+            >Pesan</a
+          >
+        </nav>
+        <div class="hidden md:block">
+          <a
+            href="login-page.html"
+            class="bg-accent text-white px-4 py-2 rounded-full hover:bg-yellow-600 transition duration-300"
+            >Login</a
+          >
         </div>
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700"
-            >Alamat Email</label
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="text-white text-2xl md:hidden"
+          aria-label="Toggle mobile menu"
+        >
+          <i id="mobile-menu-icon-open" class="fas fa-bars"></i>
+          <i id="mobile-menu-icon-close" class="fas fa-times hidden"></i>
+        </button>
+      </div>
+      <!-- Mobile Menu Overlay -->
+      <div
+        id="mobile-menu-overlay"
+        class="fixed inset-0 bg-slate-900 bg-opacity-75 z-50 hidden"
+      >
+        <div class="flex flex-col items-center justify-center min-h-screen">
+          <a
+            href="index.html"
+            class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300"
+            >Beranda</a
           >
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="contoh@email.com"
-            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
-            required
-          />
+          <a
+            href="rental-list.html"
+            class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300"
+            >Rental Mobil</a
+          >
+          <a
+            href="booking-page.html"
+            class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300"
+            >Pesan</a
+          >
+          <a
+            href="login-page.html"
+            class="mobile-menu-item bg-accent text-white px-6 py-3 rounded-full hover:bg-yellow-600 transition duration-300 mt-8"
+            >Login</a
+          >
         </div>
-        <div>
-          <label for="password" class="block text-sm font-medium text-gray-700"
-            >Kata Sandi</label
-          >
-          <div class="relative mt-1">
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4">
+      <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-primary mb-6">
+          Daftar Akun Baru
+        </h1>
+        <form id="register-form" class="space-y-6">
+          <div>
+            <label for="full-name" class="block text-sm font-medium mb-1"
+              >Nama Lengkap</label
+            >
+            <input
+              type="text"
+              id="full-name"
+              name="full-name"
+              class="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Masukkan nama lengkap Anda"
+              required
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Masukkan email Anda"
+              required
+            />
+          </div>
+          <div class="relative">
+            <label for="password" class="block text-sm font-medium mb-1"
+              >Kata Sandi</label
+            >
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Minimal 6 karakter"
-              class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
-              minlength="6"
+              class="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary pr-10"
+              placeholder="Minimal 8 karakter"
               required
             />
-            <button
-              type="button"
+            <span
+              class="absolute inset-y-0 right-0 top-6 pr-3 flex items-center text-slate-400 cursor-pointer"
               id="toggle-password"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
             >
-              <i class="fas fa-eye"></i>
-            </button>
+              <i class="fas fa-eye" id="toggle-icon"></i>
+            </span>
           </div>
-        </div>
-        <div>
-          <label
-            for="confirm-password"
-            class="block text-sm font-medium text-gray-700"
-            >Konfirmasi Kata Sandi</label
-          >
-          <div class="relative mt-1">
+          <div class="relative">
+            <label for="confirm-password" class="block text-sm font-medium mb-1"
+              >Konfirmasi Kata Sandi</label
+            >
             <input
               type="password"
               id="confirm-password"
               name="confirm-password"
-              placeholder="Ulangi kata sandi"
-              class="block w-full px-4 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+              class="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary pr-10"
+              placeholder="Ulangi kata sandi Anda"
               required
             />
-            <button
-              type="button"
+            <span
+              class="absolute inset-y-0 right-0 top-6 pr-3 flex items-center text-slate-400 cursor-pointer"
               id="toggle-confirm-password"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
             >
-              <i class="fas fa-eye"></i>
+              <i class="fas fa-eye" id="toggle-confirm-icon"></i>
+            </span>
+          </div>
+          <div>
+            <button
+              type="submit"
+              class="w-full bg-primary text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition duration-300"
+            >
+              Daftar
             </button>
           </div>
-        </div>
-        <div class="pt-2">
-          <button
-            type="submit"
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
-          >
-            Daftar
-          </button>
-        </div>
-      </form>
-
-      <div class="mt-6 text-center text-sm">
-        <p class="text-gray-500">
+        </form>
+        <p class="mt-6 text-center text-sm text-slate-600">
           Sudah punya akun?
-          <a
-            href="login-page.html"
-            class="font-medium text-primary hover:underline"
-            >Masuk sekarang</a
+          <a href="login-page.html" class="font-medium text-primary hover:text-blue-700"
+            >Login di sini</a
           >
         </p>
       </div>
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="absolute bottom-4 text-center w-full text-gray-500 text-sm">
-      <p>
-        &copy; <span id="current-year"></span> Sinatriatrans. All rights
-        reserved.
-      </p>
+    <footer class="bg-primary text-white py-8">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left"
+      >
+        <div class="mb-4 md:mb-0">
+          <h3 class="text-xl font-bold mb-2">Sinatriatrans</h3>
+          <p class="text-sm">
+            Layanan travel & rental mobil terpercaya untuk perjalanan Anda.
+          </p>
+        </div>
+        <div class="mb-4 md:mb-0">
+          <h4 class="font-semibold mb-2">Hubungi Kami</h4>
+          <p class="text-sm">
+            <i class="fas fa-phone mr-2"></i>+62 812-345-6789
+          </p>
+          <p class="text-sm">
+            <i class="fas fa-envelope mr-2"></i>info@sinatriatrans.com
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Ikuti Kami</h4>
+          <div class="flex justify-center md:justify-start space-x-4 text-lg">
+            <a href="#" class="hover:text-accent transition duration-300"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="#" class="hover:text-accent transition duration-300"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" class="hover:text-accent transition duration-300"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-6 text-sm text-slate-300">
+        &copy; <span id="current-year"></span> Sinatriatrans. Semua Hak Cipta
+        Dilindungi.
+      </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Message Box Element -->
+    <div id="message-box" class="message-box hidden"></div>
+
     <script>
-      // Function to show custom message box
-      const showMessageBox = (message, type = "success") => {
+      // Function to show a message box
+      function showMessageBox(message) {
         const messageBox = document.getElementById("message-box");
-        const messageText = document.getElementById("message-text");
-        const closeButton = document.getElementById("close-message-box");
-
-        // Set message and style
-        messageText.textContent = message;
-        messageBox.classList.remove("bg-green-500", "bg-red-500");
-        if (type === "success") {
-          messageBox.classList.add("bg-green-500");
-        } else {
-          messageBox.classList.add("bg-red-500");
-        }
-
-        // Show the message box
+        messageBox.textContent = message;
         messageBox.classList.remove("hidden");
-        messageBox.classList.add("animate-slideIn");
+        messageBox.style.opacity = 1;
 
-        // Hide after 5 seconds
+        // Hide the message box after 3 seconds
         setTimeout(() => {
-          messageBox.classList.add("hidden");
-        }, 5000);
-
-        // Close button functionality
-        closeButton.onclick = () => {
-          messageBox.classList.add("hidden");
-        };
-      };
+          messageBox.style.opacity = 0;
+          setTimeout(() => {
+            messageBox.classList.add("hidden");
+          }, 500); // Wait for the transition to finish
+        }, 3000);
+      }
 
       document.addEventListener("DOMContentLoaded", () => {
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenuOverlay = document.getElementById(
+          "mobile-menu-overlay"
+        );
+        const mobileMenuIconOpen = document.getElementById(
+          "mobile-menu-icon-open"
+        );
+        const mobileMenuIconClose = document.getElementById(
+          "mobile-menu-icon-close"
+        );
+        const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
+
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenuOverlay.classList.toggle("hidden");
+            mobileMenuIconOpen.classList.toggle("hidden");
+            mobileMenuIconClose.classList.toggle("hidden");
+          });
+        }
+
+        mobileMenuItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            mobileMenuOverlay.classList.add("hidden");
+            mobileMenuIconOpen.classList.remove("hidden");
+            mobileMenuIconClose.classList.add("hidden");
+          });
+        });
+
         // Toggle password visibility
-        const togglePassword = (id, iconId) => {
-          const passwordField = document.getElementById(id);
-          const toggleIcon = document.getElementById(iconId);
-          if (passwordField.type === "password") {
-            passwordField.type = "text";
-            toggleIcon.classList.remove("fa-eye");
-            toggleIcon.classList.add("fa-eye-slash");
+        const togglePassword = document.getElementById("toggle-password");
+        togglePassword.addEventListener("click", () => {
+          const passwordField = document.getElementById("password");
+          const toggleIcon = document.getElementById("toggle-icon");
+          togglePasswordVisibility(passwordField, toggleIcon);
+        });
+
+        const toggleConfirmPassword = document.getElementById(
+          "toggle-confirm-password"
+        );
+        toggleConfirmPassword.addEventListener("click", () => {
+          const passwordField = document.getElementById("confirm-password");
+          const toggleIcon = document.getElementById("toggle-confirm-icon");
+          togglePasswordVisibility(passwordField, toggleIcon);
+        });
+
+        const togglePasswordVisibility = (passwordField, iconElement) => {
+          const type =
+            passwordField.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          passwordField.setAttribute("type", type);
+          if (type === "password") {
+            iconElement.classList.remove("fa-eye-slash");
+            iconElement.classList.add("fa-eye");
           } else {
-            passwordField.type = "password";
-            toggleIcon.classList.remove("fa-eye-slash");
-            toggleIcon.classList.add("fa-eye");
+            iconElement.classList.remove("fa-eye");
+            iconElement.classList.add("fa-eye-slash");
           }
         };
 
-        document
-          .getElementById("toggle-password")
-          .addEventListener("click", () => {
-            togglePassword("password", "toggle-password");
-          });
-
-        document
-          .getElementById("toggle-confirm-password")
-          .addEventListener("click", () => {
-            togglePassword("confirm-password", "toggle-confirm-password");
-          });
-
-        // Handle form submission and save to localStorage
+        // Handle form submission (dummy registration)
         const registerForm = document.getElementById("register-form");
         if (registerForm) {
           registerForm.addEventListener("submit", (e) => {
@@ -444,28 +387,40 @@
 
             if (password !== confirmPassword) {
               showMessageBox(
-                "Kata sandi dan konfirmasi kata sandi tidak cocok.",
-                "error"
+                "Kata sandi dan konfirmasi kata sandi tidak cocok."
               );
               return;
             }
 
-            // Check if user already exists in localStorage
-            const existingUser = localStorage.getItem(email);
-            if (existingUser) {
-              showMessageBox("Email ini sudah terdaftar.", "error");
-              return;
-            }
-
-            // Save user data to localStorage
-            // In a real app, this would be sent to a server
-            localStorage.setItem(email, JSON.stringify({ fullName, password }));
+            // =======================================================
+            // Bagian baru untuk menyimpan data pendaftaran
+            // =======================================================
+            // Logika pendaftaran dummy
+            // Simpan data pengguna ke localStorage untuk simulasi login otomatis
+            localStorage.setItem("isLoggedIn", "true");
+            // Buat inisial dari nama lengkap
+            const initials = fullName
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .toUpperCase();
+            localStorage.setItem(
+              "loggedInUser",
+              JSON.stringify({
+                fullName: fullName,
+                email: email,
+                initials: initials,
+              })
+            );
 
             showMessageBox(
-              `Pendaftaran berhasil untuk ${fullName} (${email})! Silakan login.`,
-              "success"
+              `Pendaftaran berhasil untuk ${fullName} (${email})! Silakan login.`
             );
-            registerForm.reset();
+            registerForm.reset(); // Reset the form
+            // Redirect ke halaman beranda setelah pendaftaran berhasil
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1000);
           });
         }
 
