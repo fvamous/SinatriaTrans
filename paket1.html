@@ -89,7 +89,7 @@
       }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-800">
+  <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
     <!-- Custom Message Box -->
     <div id="messageBoxOverlay" class="message-box-overlay"></div>
     <div id="messageBox" class="message-box">
@@ -106,13 +106,12 @@
     <nav
       class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
     >
-       <div class="px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4">
+      <div class="flex justify-between items-center">
         <!-- Logo/Brand -->
         <a href="#home" class="flex items-center space-x-3">
           <img
             src="images/logo.png"
-            alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
+            alt="Logo Sinatriatrans"
             class="h-10 w-auto object-contain"
           />
           <span
@@ -161,55 +160,49 @@
               <a
                 href="index.html#home"
                 class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+                >Beranda</a
               >
-                Beranda
-              </a>
             </li>
             <li>
               <a
                 href="index.html#travel-packages"
                 class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+                >Paket Travel</a
               >
-                Paket Travel
-              </a>
             </li>
             <li>
               <a
                 href="rental-list.html"
                 class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+                >Rental Mobil</a
               >
-                Rental Mobil
-              </a>
             </li>
             <li>
               <a
                 href="booking-page.html"
                 class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+                >Pemesanan</a
               >
-                Pemesanan
-              </a>
             </li>
             <li>
               <a
-                href="index.html#tentang-kami"
+                href="index.html#about-us"
                 class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+                >Tentang Kami</a
               >
-                Tentang Kami
-              </a>
             </li>
             <li>
               <a
-                href="index.html#kontak"
+                href="index.html#contact-us"
                 class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+                >Kontak</a
               >
-                Kontak
-              </a>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- Mobile Menu Overlay (untuk tampilan mobile saat dibuka) -->
+      <!-- Mobile Menu Overlay -->
       <div
         id="mobile-menu-overlay"
         class="lg:hidden bg-secondary mt-4 p-4 rounded-lg shadow-inner hidden"
@@ -218,68 +211,64 @@
           <li>
             <a
               href="index.html"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              class="block text-white hover:text-gray-200 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              >Beranda</a
             >
-              Beranda
-            </a>
           </li>
           <li>
             <a
               href="index.html#travel-packages"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              class="block text-white hover:text-gray-200 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              >Paket Travel</a
             >
-              Paket Travel
-            </a>
           </li>
           <li>
             <a
-              href="#rental-list.html"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              href="rental-list.html"
+              class="block text-white hover:text-gray-200 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              >Rental Mobil</a
             >
-              Rental Mobil
-            </a>
           </li>
           <li>
             <a
               href="booking-page.html"
-              class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              class="block text-white hover:text-gray-200 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              >Pemesanan</a
             >
-              Pemesanan
-            </a>
           </li>
           <li>
             <a
-              href="index.html#tentang-kami"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              href="index.html#about-us"
+              class="block text-white hover:text-gray-200 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              >Tentang Kami</a
             >
-              Tentang Kami
-            </a>
           </li>
           <li>
             <a
-              href="index.html#kontak"
-              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              href="index.html#contact-us"
+              class="block text-white hover:text-gray-200 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+              >Kontak</a
             >
-              Kontak
-            </a>
           </li>
         </ul>
       </div>
     </nav>
 
+    <!-- Konten -->
     <main
-      class="full relative bg-cover bg-center h-screen flex items-center text-white pt-18"
+      class="flex-grow relative bg-cover bg-center flex items-center justify-center text-white pt-40 pb-20"
       style="
         background-image: url('images/bali-tour.jpg');
         background-attachment: fixed;
+        min-height: 600px;
       "
     >
-      <div class="container mx-auto overflow-y-auto p-4 flex flex-col items-center text-center justify-center">
-        <h1 class="text-5xl font-extrabold h-auto text-center text-gray-800 mb-12">
+      <div class="container mx-auto px-4">
+        <h1 class="text-5xl font-extrabold text-center text-gray-800 mb-12">
           Detail Paket Harian
         </h1>
         <div
-          class="bg-white p-8 rounded-xl shadow-lg max-w-4xl flex flex-col md:flex-row items-center md:items-start gap-8"
+          class="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8"
         >
           <img
             src="images/logo.png"
@@ -292,10 +281,7 @@
               Jenis layanan ini adalah jenis sewa mobil dengan jangka waktu
               berdasarkan pemakaian harian atau perhari. Minimal jangka adalah
               per 12 jam. Pada layanan jenis ini, Anda dapat memilih menggunakan
-              jasa sopir yang telah kami sediakan ataupun lepas kunci. Jika Anda
-              menggunakan jasa sopir, maka kerusakan kendaraan menjadi tanggung
-              jawab perusahaan rental sepenuhnya. Namun, jika tanpa supir
-              tanggung jawab sepenuhnya ada pada Anda sebagai pengguna.
+              jasa sopir yang telah kami sediakan ataupun lepas kunci.
             </p>
             <p class="text-2xl font-bold text-primary mb-6">
               Harga: Mulai Rp 1.5 Juta
@@ -303,26 +289,24 @@
             <a
               href="booking-page.html?package=harian"
               class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+              >Pesan Sekarang</a
             >
-              Pesan Sekarang
-            </a>
           </div>
         </div>
         <div class="text-center mt-12">
           <a
             href="index.html?#travel-packages"
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-full transition duration-300"
+            >Kembali ke Paket Travel</a
           >
-            Kembali ke Paket Travel
-          </a>
         </div>
       </div>
     </main>
 
-     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-primary to-secondary py-8 pb-8 pt-8">
-      <div class="px-4 text-center">
-        <h3 class="text-2xl item-center text-white font-bold mb-4">Sinatriatrans</h3>
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-primary to-secondary py-8 mt-15">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-2xl text-white font-bold mb-4">Sinatriatrans</h3>
         <p class="text-gray-200 mb-2">
           Jl. Semail No.RT.03, Mredo, Bangunharjo, Kec. Sewon, Kabupaten Bantul,
           Daerah Istimewa Yogyakarta 55185
@@ -332,24 +316,18 @@
           <a
             href="#"
             class="text-gray-200 hover:text-white transition duration-300"
-          >
-            <i class="fab fa-facebook-f"></i>
-            <span class="sr-only">Facebook</span>
-          </a>
+            ><i class="fab fa-facebook-f"></i
+          ></a>
           <a
             href="#"
             class="text-gray-200 hover:text-white transition duration-300"
-          >
-            <i class="fab fa-instagram"></i>
-            <span class="sr-only">Instagram</span>
-          </a>
+            ><i class="fab fa-instagram"></i
+          ></a>
           <a
             href="#"
             class="text-gray-200 hover:text-white transition duration-300"
-          >
-            <i class="fab fa-twitter"></i>
-            <span class="sr-only">Twitter</span>
-          </a>
+            ><i class="fab fa-twitter"></i
+          ></a>
         </div>
         <p class="text-gray-200 text-sm">
           &copy; <span id="current-year"></span> Sinatriatrans. All rights
@@ -359,7 +337,7 @@
     </footer>
 
     <script>
-      // Custom Message Box Logic (for consistency)
+      // Custom Message Box Logic
       const messageBox = document.getElementById("messageBox");
       const messageBoxOverlay = document.getElementById("messageBoxOverlay");
       const messageBoxContent = document.getElementById("messageBoxContent");
@@ -376,7 +354,7 @@
         messageBoxOverlay.style.display = "none";
       });
 
-      // Navbar Mobile Toggle (reused from index.html)
+      // Navbar Mobile Toggle
       document.addEventListener("DOMContentLoaded", () => {
         const mobileMenuButton = document.getElementById("mobile-menu-button");
         const mobileMenuOverlay = document.getElementById(
