@@ -158,34 +158,34 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow flex h-screen items-center justify-center py-12 px-4">
-      <div
-        class="bg-gray-200 p-8 rounded-xl shadow-lg w-full max-w-4xl h-auto"
-      >
+    <main
+      class="flex-grow flex h-screen items-center justify-center py-12 px-4"
+    >
+      <div class="bg-gray-200 p-8 rounded-xl shadow-lg w-full max-w-4xl h-auto">
         <h1 class="text-5xl font-bold text-center text-primary mb-6">Login</h1>
         <form id="login-form" class="space-y-10">
           <div>
-            <label for="username-email" class="block text-3xl font-medium mb-2"
+            <label for="username-email" class="block text-sm font-medium mb-2"
               >Nama Pengguna atau Email</label
             >
             <input
               type="text"
               id="username-email"
               name="username-email"
-              class="w-full text-2xl px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              class="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder="Masukkan nama pengguna atau email Anda"
               required
             />
           </div>
           <div class="relative">
-            <label for="password" class="block text-3xl font-medium mb-2"
+            <label for="password" class="block text-sm font-medium mb-2"
               >Kata Sandi</label
             >
             <input
               type="password"
               id="password"
               name="password"
-              class="w-full text-2xl px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary pr-10"
+              class="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary pr-10"
               placeholder="Masukkan kata sandi Anda"
               required
             />
@@ -196,7 +196,7 @@
               <i class="fas fa-eye" id="toggle-icon"></i>
             </span>
           </div>
-          <div class="flex items-center justify-between text-2xl">
+          <div class="flex items-center justify-between text-sm">
             <div class="flex items-center">
               <input
                 id="remember-me"
@@ -215,13 +215,13 @@
           <div>
             <button
               type="submit"
-              class="w-full bg-primary text-3xl text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition duration-300"
+              class="w-full bg-primary text-sm text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition duration-300"
             >
               Login
             </button>
           </div>
         </form>
-        <p class="mt-6 text-center text-2xl text-slate-600">
+        <p class="mt-6 text-center text-sm text-slate-600">
           Belum punya akun?
           <a
             href="create-account.html"
