@@ -48,47 +48,36 @@
         scroll-behavior: smooth;
       }
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #f1f1f1;
+        background: #f1f5f9;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb {
-        background: #888;
+        background: #94a3b8;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: #64748b;
       }
       .message-box {
-        display: none;
         position: fixed;
-        top: 50%;
+        top: 20px;
         left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 2rem;
-        border-radius: 0.75rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-        text-align: center;
-        max-width: 90%;
-        width: 400px;
-      }
-      .message-box-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
       }
     </style>
   </head>
+
   <body class="bg-gray-50 text-gray-800">
     <!-- Custom Message Box -->
     <div id="messageBoxOverlay" class="message-box-overlay"></div>
@@ -102,6 +91,9 @@
       </button>
     </div>
 
+<body
+    class="bg-slate-100 flex flex-col min-h-screen font-inter text-slate-800"
+  >
     <!-- Navbar -->
     <nav
       class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
@@ -266,13 +258,15 @@
       </div>
     </nav>
 
-    <main class="pt-20 py-16">
-      <div class="container mx-auto px-4">
-        <h1 class="text-5xl font-extrabold text-center text-gray-800 mb-12">
+    <main class="flex-grow flex items-cent justify-center py-12 px-4 ">
+      <div
+        class="bg-gray-200 p-8 rounded-xl shadow-lg w-full max-w-4xl h-[728px] mt-16"
+      >
+        <h1 class="text-6xl font-extrabold text-center text-gray-800 mb-3">
           Formulir Pemesanan
         </h1>
         <div class="bg-gray-200 p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
-          <p class="text-lg text-gray-700 mb-6 text-center">
+          <p class="text-xl text-gray-700 mb-6 text-center">
             Isi formulir di bawah ini untuk melakukan pemesanan paket travel
             atau rental mobil.
           </p>
@@ -281,14 +275,14 @@
             <div>
               <label
                 for="package-type"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block text-gray-700 text-3xl font-bold mb-2"
               >
                 Jenis Paket
               </label>
               <select
                 id="package-type"
                 name="package-type"
-                class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                class="text-2xl shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
                 required
               >
                 <option value="">Pilih Jenis Paket</option>
@@ -302,7 +296,7 @@
             <div>
               <label
                 for="full-name"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block text-gray-700 text-2xl font-bold mb-2"
               >
                 Nama Lengkap
               </label>
@@ -310,7 +304,7 @@
                 type="text"
                 id="full-name"
                 name="full-name"
-                class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                class="text-2xl shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
                 placeholder="Nama Lengkap Anda"
                 required
               />
@@ -319,7 +313,7 @@
             <div>
               <label
                 for="email"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block text-gray-700 text-2xl font-bold mb-2"
               >
                 Email
               </label>
@@ -327,7 +321,7 @@
                 type="email"
                 id="email"
                 name="email"
-                class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                class="text-2xl shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
                 placeholder="email@example.com"
                 required
               />
@@ -336,7 +330,7 @@
             <div>
               <label
                 for="whatsapp"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block text-gray-700 text-2xl font-bold mb-2"
               >
                 Nomor Telepon/WhatsApp
               </label>
@@ -344,7 +338,7 @@
                 type="tel"
                 id="whatsapp"
                 name="whatsapp"
-                class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                class="text-2xl shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
                 placeholder="+62 812-3456-7890"
                 required
               />
@@ -353,7 +347,7 @@
             <div>
               <label
                 for="start-date"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block text-gray-700 text-2xl font-bold mb-2"
               >
                 Tanggal Mulai Sewa
               </label>
@@ -361,7 +355,7 @@
                 type="date"
                 id="start-date"
                 name="start-date"
-                class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                class="text-2xl shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -369,7 +363,7 @@
             <div>
               <label
                 for="end-date"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block text-gray-700 text-2xl font-bold mb-2"
               >
                 Tanggal Selesai Sewa
               </label>
@@ -377,7 +371,7 @@
                 type="date"
                 id="end-date"
                 name="end-date"
-                class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                class="text-2xl shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -385,7 +379,7 @@
             <div>
               <label
                 for="additional-message"
-                class="block text-gray-700 text-sm font-bold mb-2"
+                class="block text-gray-700 text-2xl font-bold mb-2"
               >
                 Pesan Tambahan (opsional)
               </label>
@@ -393,7 +387,7 @@
                 id="additional-message"
                 name="additional-message"
                 rows="4"
-                class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 resize-y"
+                class="text-2xl shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 resize-y"
                 placeholder="Contoh: Saya membutuhkan mobil dengan sopir, atau preferensi mobil tertentu."
               ></textarea>
             </div>
@@ -411,7 +405,7 @@
 
     <!-- Footer -->
     <footer class="bg-gradient-to-r from-primary to-secondary py-8 mt-12">
-      <div class="px-4 text-center">
+      <div class="px-4 py-8 text-center">
         <h3 class="text-2xl text-white font-bold mb-4">Sinatriatrans</h3>
         <p class="text-gray-300 mb-2">
           Jl. Semail No.RT.03, Mredo, Bangunharjo, Kec. Sewon, Kabupaten Bantul,
