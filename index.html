@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinatriatrans - Travel & Rental Mobil</title>
     <meta
       name="description"
       content="Sinatriatrans menyediakan layanan travel dan rental mobil terbaik untuk kebutuhan perjalanan Anda."
-    />
+    >
     <link
       rel="icon"
       href="https://placehold.co/32x32/1a56db/ffffff?text=ST"
       type="image/x-icon"
-    />
+    >
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,6 +32,29 @@
         },
       };
     </script>
+    
+<script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+        // GANTI DENGAN KONFIGURASI PROYEK FIREBASE ANDA
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+        };
+
+        // Inisialisasi Firebase App
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app); // Menggunakan "app" yang baru diinisialisasi
+        
+        // Sekarang Anda dapat menggunakan variabel 'auth' untuk fungsi otentikasi
+        // Misalnya: signInWithEmailAndPassword(auth, email, password);
+
+    </script>
 
     <!-- Font Awesome for icons -->
     <link
@@ -39,7 +62,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    >
 
     <style>
       html,
@@ -73,7 +96,7 @@
             src="images/logo.png"
             alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
             class="h-10 w-auto object-contain"
-          />
+          >
           <span
             class="text-white text-3xl font-bold tracking-wider hover:text-gray-100 transition duration-300"
           >
@@ -117,7 +140,7 @@
     >
         <div
           id="mobile-auth-container"
-          class="flex flex-col space-y-4""
+          class="flex flex-col space-y-4"
         >
           <a
             href="index.html"
@@ -341,7 +364,7 @@
           </div>
         </div>
       </section>
-    </main>
+    
     <!-- About Us Section -->
       <section id="tentang-kami" class="py-20 bg-white">
         <div class="container mx-auto px-4">
@@ -447,9 +470,7 @@
               <div class="rounded-xl overflow-hidden shadow-sm">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7904.75035725198!2d110.3653847443911!3d-7.855746118663867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sJl.%20Semail%20No.RT.03%2C%20Mredo%2C%20Bangunharjo%2C%20Kec.%20Sewon%2C%20Kabupaten%20Bantul%2C%20Daerah%20Istimewa%20Yogyakarta%2055185!5e0!3m2!1sen!2sid!4v1755267781112!5m2!1sen!2sid"
-                  width="100%"
-                  height="300"
-                  style="border: 0"
+                  style="width: 100%; height: 300px; border: 0"
                   allowfullscreen=""
                   loading="lazy"
                 ></iframe>
@@ -469,7 +490,7 @@
                     name="nama"
                     required
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
-                  />
+                  >
                 </div>
                 <div>
                   <label for="email" class="block text-sm font-medium text-gray-700"
@@ -481,7 +502,7 @@
                     name="email"
                     required
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
-                  />
+                  >
                 </div>
                 <div>
                   <label for="pesan" class="block text-sm font-medium text-gray-700"
@@ -543,14 +564,14 @@
           </p>
           <div class="mt-4 flex space-x-4">
             <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
+              ><i class="fab fa-facebook-f"></i></a
+            >
             <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-twitter"></i
-            ></a>
+              ><i class="fab fa-twitter"></i></a
+            >
             <a href="#" class="text-gray-400 hover:text-white"
-              ><i class="fab fa-instagram"></i
-            ></a>
+              ><i class="fab fa-instagram"></i></a
+            >
           </div>
         </div>
 
@@ -596,7 +617,7 @@
               type="email"
               placeholder="Email Anda"
               class="w-full px-4 py-2 rounded-l-full focus:outline-none text-gray-800"
-            />
+            >
             <button
               type="submit"
               class="bg-primary text-white px-4 rounded-r-full hover:bg-blue-700 transition duration-300"
@@ -651,149 +672,140 @@
       const createRentalCard = (rental) => {
         return `
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
-                    <img src="${rental.image}" alt="${rental.name}" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x250/1a56db/ffffff?text=${rental.name}';"/>
+                    <img src="${rental.image}" alt="${rental.name}" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x250/1a56db/ffffff?text=${rental.name}';">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800">${rental.name}</h3>
-                        <div class="flex items-center text-gray-500 mt-2 text-sm space-x-4">
-                            <div class="flex items-center space-x-1">
-                                <i class="fas fa-users"></i>
-                                <span>${rental.passengers} Penumpang</span>
-                            </div>
-                            <div class="flex items-center space-x-1">
-                                <i class="fas fa-cogs"></i>
-                                <span>${rental.transmission}</span>
-                            </div>
+                        <div class="flex items-center space-x-4 text-gray-600 mt-2 text-sm">
+                            <span class="flex items-center"><i class="fas fa-user-friends mr-2"></i>${rental.passengers} Penumpang</span>
+                            <span class="flex items-center"><i class="fas fa-cogs mr-2"></i>${rental.transmission}</span>
                         </div>
-                        <div class="flex justify-between items-center mt-4">
-                            <span class="text-primary text-xl font-bold">Rp ${rental.pricePerDay}/hari</span>
-                            <a href="booking-page.html?package=harian" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-700 transition duration-300 text-sm font-medium">
-                                Sewa Sekarang
-                            </a>
-                        </div>
+                        <p class="text-xl font-bold text-primary mt-4">Rp ${rental.pricePerDay}<span class="text-sm font-normal text-gray-500">/hari</span></p>
+                        <a href="booking-page.html?rentalId=${rental.id}" class="mt-4 block text-center bg-accent text-gray-900 font-semibold py-2 rounded-full hover:bg-amber-500 transition duration-300">Pesan Sekarang</a>
                     </div>
                 </div>
             `;
       };
 
-      document.addEventListener("DOMContentLoaded", function () {
-        // Render Featured Rental Cards
-        const featuredRentalsGrid = document.getElementById(
-          "featured-rentals-grid"
-        );
-        if (featuredRentalsGrid) {
-          featuredRentalsGrid.innerHTML = featuredRentals
-            .map(createRentalCard)
+      // Fungsi untuk menampilkan rental mobil unggulan di halaman utama
+      const renderFeaturedRentals = () => {
+        const grid = document.getElementById("featured-rentals-grid");
+        if (grid) {
+          grid.innerHTML = featuredRentals
+            .map((rental) => createRentalCard(rental))
             .join("");
         }
+      };
 
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const mobileMenuOverlay = document.getElementById(
-          "mobile-menu-overlay"
-        );
-        const mobileMenuIconOpen = document.getElementById(
-          "mobile-menu-icon-open"
-        );
-        const mobileMenuIconClose = document.getElementById(
-          "mobile-menu-icon-close"
-        );
-        const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
+      // Fungsi untuk menampilkan semua rental mobil di halaman rental-list.html
+      const renderAllRentals = () => {
+        const grid = document.getElementById("all-rentals-grid");
+        if (grid) {
+          grid.innerHTML = allRentals
+            .map((rental) => createRentalCard(rental))
+            .join("");
+        }
+      };
 
-        if (mobileMenuButton) {
-          mobileMenuButton.addEventListener("click", () => {
-            mobileMenuOverlay.classList.toggle("hidden");
-            mobileMenuIconOpen.classList.toggle("hidden");
-            mobileMenuIconClose.classList.toggle("hidden");
-          });
+      // Fungsi untuk menampilkan pesan (pengganti alert/confirm)
+      const showMessageBox = (message, type = "info") => {
+        const msgBox = document.getElementById("message-box");
+        const msgText = document.getElementById("message-text");
+        msgText.textContent = message;
+        msgBox.classList.remove("hidden");
+      };
+
+      // Fungsi untuk menyembunyikan message box
+      const hideMessageBox = () => {
+        const msgBox = document.getElementById("message-box");
+        msgBox.classList.add("hidden");
+      };
+
+      // Ambil elemen untuk tombol login/logout
+      const authContainer = document.getElementById("auth-container");
+      const mobileAuthContainer = document.getElementById("mobile-auth-container");
+
+      // Fungsi untuk merender tombol login/logout
+      const renderAuthButtons = (isLoggedIn) => {
+        const loginButton = `<a href="login-page.html" class="bg-white text-primary px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300">Masuk</a>`;
+        const logoutButton = `<a href="#" id="logout-button" class="bg-white text-primary px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300">Keluar</a>`;
+        const profileLink = `<a href="profile.html" class="text-white hover:text-accent transition duration-300"><i class="fas fa-user-circle text-2xl"></i></a>`;
+
+        if (authContainer) {
+          authContainer.innerHTML = isLoggedIn ? `${profileLink} ${logoutButton}` : loginButton;
         }
 
-        mobileMenuItems.forEach((item) => {
-          item.addEventListener("click", () => {
-            mobileMenuOverlay.classList.add("hidden");
-            mobileMenuIconOpen.classList.remove("hidden");
-            mobileMenuIconClose.classList.add("hidden");
-          });
-        });
-
-        // =======================================================
-        // Bagian baru untuk menangani status otentikasi
-        // =======================================================
-        const authContainer = document.getElementById("auth-container");
-        const mobileAuthContainer = document.getElementById(
-          "mobile-auth-container"
-        );
-
-        function renderAuthStatus() {
-          // Ambil status login dari localStorage
-          const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-          const loggedInUser = JSON.parse(
-            localStorage.getItem("loggedInUser") || "{}"
-          );
+        if (mobileAuthContainer) {
+          const mobileLoginButton = `<a href="login-page.html" class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300">Masuk</a>`;
+          const mobileLogoutButton = `<a href="#" id="mobile-logout-button" class="mobile-menu-item text-white text-2xl my-4 hover:text-accent transition duration-300">Keluar</a>`;
+          
+          const existingLogin = mobileAuthContainer.querySelector('a[href="login-page.html"]');
+          const existingLogout = mobileAuthContainer.querySelector('a[id="mobile-logout-button"]');
 
           if (isLoggedIn) {
-            // Jika sudah login, tampilkan ikon profil dan tombol logout
-            authContainer.innerHTML = `
-                <div class="flex items-center space-x-4">
-                    <span class="text-white font-medium hidden lg:inline">${loggedInUser.fullName}</span>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-300 text-slate-800 flex items-center justify-center text-lg font-bold" title="Profil">
-                        ${loggedInUser.initials}
-                    </a>
-                    <button id="logout-button" class="bg-accent text-white px-4 py-2 rounded-full hover:bg-yellow-600 transition duration-300">
-                        Logout
-                    </button>
-                </div>
-            `;
-            // Tambahkan tombol logout ke mobile menu juga
-            mobileAuthContainer.innerHTML += `
-              <button id="logout-button-mobile" class="bg-accent text-white px-6 py-3 rounded-full hover:bg-yellow-600 transition duration-300 mt-8">
-                  Logout
-              </button>
-            `;
+            if (existingLogin) existingLogin.remove();
+            if (!existingLogout) mobileAuthContainer.appendChild(createElementFromHTML(mobileLogoutButton));
           } else {
-            // Jika belum login, tampilkan tombol login
-            authContainer.innerHTML = `
-                <a href="login-page.html" class="bg-accent text-white px-4 py-2 rounded-full hover:bg-yellow-600 transition duration-300">
-                    Login
-                </a>
-            `;
-            // Tambahkan tombol login ke mobile menu juga
-            mobileAuthContainer.innerHTML += `
-              <a href="login-page.html" class="mobile-menu-item bg-accent text-white px-6 py-3 rounded-full hover:bg-yellow-600 transition duration-300 mt-8">
-                  Login
-              </a>
-            `;
-          }
-
-          // Tambahkan event listener untuk tombol logout
-          const logoutButton = document.getElementById("logout-button");
-          const logoutButtonMobile = document.getElementById(
-            "logout-button-mobile"
-          );
-          if (logoutButton) {
-            logoutButton.addEventListener("click", () => {
-              localStorage.removeItem("isLoggedIn");
-              localStorage.removeItem("loggedInUser");
-              window.location.href = "index.html"; // Redirect ke halaman beranda
-            });
-          }
-          if (logoutButtonMobile) {
-            logoutButtonMobile.addEventListener("click", () => {
-              localStorage.removeItem("isLoggedIn");
-              localStorage.removeItem("loggedInUser");
-              window.location.href = "index.html"; // Redirect ke halaman beranda
-            });
+            if (existingLogout) existingLogout.remove();
+            if (!existingLogin) mobileAuthContainer.appendChild(createElementFromHTML(mobileLoginButton));
           }
         }
+      };
 
-        // Panggil fungsi ini saat halaman dimuat
-        renderAuthStatus();
+      // Utility function to create an element from an HTML string
+      function createElementFromHTML(htmlString) {
+        const div = document.createElement('div');
+        div.innerHTML = htmlString.trim();
+        return div.firstChild;
+      }
 
-
-        // Set current year in footer
-        const currentYearSpan = document.getElementById("current-year");
-        if (currentYearSpan) {
-          currentYearSpan.textContent = new Date().getFullYear();
+      // Tambahkan event listener untuk tombol logout
+      document.addEventListener("click", (e) => {
+        if (e.target && (e.target.id === "logout-button" || e.target.id === "mobile-logout-button")) {
+          e.preventDefault();
+          showMessageBox("Anda telah berhasil keluar.");
+          renderAuthButtons(false); // Update UI
         }
+        if (e.target && e.target.id === "message-box-close") {
+          hideMessageBox();
+        }
+      });
+
+      // Panggil fungsi renderAuthButtons saat halaman dimuat (untuk simulasi status login)
+      window.addEventListener("DOMContentLoaded", () => {
+        // Asumsi: cek status login dari server atau localStorage.
+        const isLoggedIn = false; // Ganti dengan logika otentikasi nyata
+        renderAuthButtons(isLoggedIn);
+      });
+
+      // Menangani tombol menu mobile
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+      const mobileMenuIconOpen = document.getElementById("mobile-menu-icon-open");
+      const mobileMenuIconClose = document.getElementById("mobile-menu-icon-close");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenuOverlay.classList.toggle("hidden");
+        mobileMenuIconOpen.classList.toggle("hidden");
+        mobileMenuIconClose.classList.toggle("hidden");
+      });
+
+      // Tutup menu mobile saat item diklik
+      document.querySelectorAll(".mobile-menu-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          mobileMenuOverlay.classList.add("hidden");
+          mobileMenuIconOpen.classList.remove("hidden");
+          mobileMenuIconClose.classList.add("hidden");
+        });
+      });
+
+      // Menampilkan tahun saat ini di footer
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+
+      // Panggil fungsi yang sesuai saat DOM dimuat
+      document.addEventListener("DOMContentLoaded", () => {
+        renderFeaturedRentals();
+        renderAllRentals(); // Asumsi halaman rental-list.html
       });
     </script>
   </body>
