@@ -1,11 +1,6 @@
 .vercel
 node_modules
-# Example: Add the 'dist' folder to .gitignore
-echo "dist/" >> .gitignore 
-
-# Then, commit the change to .gitignore
-git add .gitignore
-git commit -m "chore: Ignore build artifacts"
-echo "*.DS_Store" >> .gitignore
+dist/
+*.DS_Store
 .env.local
 firebase-admin-key.json
