@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kebijakan Privasi - Sinatriatrans</title>
+    <meta
+      name="description"
+      content="Kebijakan privasi data pengguna Sinatriatrans."
+    />
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/1a56db/ffffff?text=ST"
+      type="image/x-icon"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a56db",
+              secondary: "#0e7490",
+              accent: "#f59e0b",
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      html,
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Header/Navbar -->
+    <header
+      class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
+    >
+      <div class="px-4 py-4 flex justify-between items-center">
+        <a href="#home" class="flex items-center space-x-3">
+          <img
+            src="/images/logo.png"
+            alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
+            class="h-10 w-auto object-contain"
+          />
+          <span
+            class="text-white text-3xl font-bold tracking-wider hover:text-gray-100 transition duration-300"
+          >
+            Sinatriatrans
+          </span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-6">
+          <a
+            href="/"
+            class="text-white hover:text-primary transition-colors duration-300"
+            >Beranda</a
+          >
+          <a
+            href="/rental-list.html"
+            class="text-white hover:text-primary transition-colors duration-300"
+            >Sewa Mobil</a
+          >
+          <a
+            href="/#travel-packages"
+            class="text-white hover:text-primary transition-colors duration-300"
+            >Paket Travel</a
+          >
+        </nav>
+        <button
+          id="mobile-menu-button"
+          class="lg:hidden text-gray-600 focus:outline-none"
+          aria-label="Toggle mobile menu"
+        >
+          <i id="mobile-menu-icon-open" class="fas fa-bars text-2xl"></i>
+          <i
+            id="mobile-menu-icon-close"
+            class="fas fa-times text-2xl hidden"
+          ></i>
+        </button>
+      </div>
+      <div
+        id="mobile-menu-overlay"
+        class="lg:hidden bg-secondary mt-4 p-4 rounded-lg shadow-inner hidden"
+      >
+        <div class="flex flex-col h-full space-y-8">
+          <a
+            href="/"
+            class="mobile-menu-item text-white text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Beranda</a
+          >
+          <a
+            href="/rental-list.html"
+            class="mobile-menu-item text-white text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Sewa Mobil</a
+          >
+          <a
+            href="/#travel-packages"
+            class="mobile-menu-item text-white text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Paket Travel</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 mb-20 mt-20">
+      <h1 class="text-4xl font-bold text-center text-primary mb-10">
+        Kebijakan Privasi
+      </h1>
+      <div class="prose max-w-none">
+        <p class="text-gray-600 text-lg">
+          Sinatriatrans berkomitmen untuk melindungi privasi data pribadi Anda.
+          Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan,
+          menggunakan, dan melindungi informasi pribadi Anda.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">
+          1. Informasi yang Kami Kumpulkan
+        </h2>
+        <p>
+          Kami mengumpulkan informasi pribadi yang Anda berikan secara sukarela
+          saat menggunakan layanan kami, seperti:
+        </p>
+        <ul class="list-disc list-inside">
+          <li>Nama lengkap</li>
+          <li>Alamat email</li>
+          <li>Nomor telepon</li>
+          <li>Informasi pembayaran (tidak termasuk detail kartu kredit)</li>
+          <li>Detail pemesanan (tanggal, jenis layanan, dll.)</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">2. Penggunaan Informasi</h2>
+        <p>Informasi yang kami kumpulkan digunakan untuk tujuan berikut:</p>
+        <ul class="list-disc list-inside">
+          <li>Memproses dan mengelola pemesanan Anda.</li>
+          <li>Berkomunikasi dengan Anda mengenai layanan kami.</li>
+          <li>Meningkatkan kualitas layanan dan pengalaman pengguna.</li>
+          <li>
+            Mengirimkan informasi promosi atau penawaran yang relevan (jika Anda
+            setuju).
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">3. Perlindungan Data</h2>
+        <p>
+          Kami menerapkan langkah-langkah keamanan teknis dan organisasional
+          untuk melindungi informasi pribadi Anda dari akses tidak sah,
+          penggunaan, atau pengungkapan.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">
+          4. Pembagian Informasi dengan Pihak Ketiga
+        </h2>
+        <p>
+          Kami tidak akan menjual, menyewakan, atau menukar informasi pribadi
+          Anda dengan pihak ketiga tanpa persetujuan Anda, kecuali untuk tujuan
+          berikut:
+        </p>
+        <ul class="list-disc list-inside">
+          <li>
+            Dengan mitra layanan yang membantu kami dalam mengoperasikan bisnis
+            kami (misalnya, pemroses pembayaran).
+          </li>
+          <li>Jika diwajibkan oleh hukum atau peraturan yang berlaku.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">5. Hak Anda</h2>
+        <p>Anda memiliki hak untuk:</p>
+        <ul class="list-disc list-inside">
+          <li>
+            Mengakses dan meminta salinan informasi pribadi Anda yang kami
+            simpan.
+          </li>
+          <li>Meminta perbaikan data yang tidak akurat.</li>
+          <li>
+            Meminta penghapusan data Anda, sesuai dengan hukum yang berlaku.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">
+          6. Cookies dan Teknologi Pelacakan
+        </h2>
+        <p>
+          Situs web kami mungkin menggunakan cookies untuk meningkatkan
+          pengalaman pengguna. Anda dapat mengelola pengaturan cookies melalui
+          browser Anda.
+        </p>
+
+        <p class="text-gray-600 mt-6">
+          Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan
+          hubungi kami melalui kontak yang tertera di situs web.
+        </p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-primary to-secondary py-12 mt-12">
+      <div class="px-4 py-8 text-center">
+        <h3 class="text-2xl text-white font-bold mb-4">Sinatriatrans</h3>
+        <p class="text-gray-300 mb-2">
+          Jl. Semail No.RT.03, Mredo, Bangunharjo, Kec. Sewon, Kabupaten Bantul,
+          Daerah Istimewa Yogyakarta 55185
+        </p>
+        <p class="text-gray-300 mb-4">Email: info@sinatriatrans.com</p>
+        <div class="flex justify-center space-x-6 mb-4">
+          <a
+            href="#"
+            class="text-gray-300 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-facebook-f"></i>
+            <span class="sr-only">Facebook</span>
+          </a>
+          <a
+            href="#"
+            class="text-gray-300 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-instagram"></i>
+            <span class="sr-only">Instagram</span>
+          </a>
+          <a
+            href="#"
+            class="text-gray-300 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-twitter"></i>
+            <span class="sr-only">Twitter</span>
+          </a>
+        </div>
+        <p class="text-gray-200 text-sm">
+          &copy; <span id="current-year"></span> Sinatriatrans. All rights
+          reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Script for dynamic content and interactivity -->
+    <script>
+      function showMessageBox(message) {
+        const messageBox = document.createElement("div");
+        messageBox.className =
+          "fixed inset-0 flex items-center justify-center z-50 p-4";
+        messageBox.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full text-center">
+                    <p class="text-lg font-semibold text-gray-800 mb-4">${message}</p>
+                    <button onclick="this.parentNode.parentNode.remove()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">Tutup</button>
+                </div>
+            `;
+        document.body.appendChild(messageBox);
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenuOverlay = document.getElementById(
+          "mobile-menu-overlay"
+        );
+        const mobileMenuIconOpen = document.getElementById(
+          "mobile-menu-icon-open"
+        );
+        const mobileMenuIconClose = document.getElementById(
+          "mobile-menu-icon-close"
+        );
+        const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
+        function toggleMobileMenu() {
+          mobileMenuOverlay.classList.toggle("hidden");
+          mobileMenuIconOpen.classList.toggle("hidden");
+          mobileMenuIconClose.classList.toggle("hidden");
+        }
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener("click", toggleMobileMenu);
+        }
+        mobileMenuItems.forEach((item) => {
+          item.addEventListener("click", toggleMobileMenu);
+        });
+        const currentYearSpan = document.getElementById("current-year");
+        if (currentYearSpan) {
+          currentYearSpan.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
+  </body>
+</html>

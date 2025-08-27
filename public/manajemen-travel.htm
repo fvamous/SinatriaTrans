@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen Travel & Rental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f3f4f6;
+        color: #1f2937;
+      }
+
+      .modal {
+        display: none;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .spinner {
+        border-top-color: #3b82f6;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .tab-button.active {
+        background-color: #3b82f6;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+
+  <body class="p-6 md:p-12">
+    <!-- Header -->
+    <header class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+        Manajemen Travel & Rental
+      </h1>
+      <p class="text-lg text-gray-600">
+        Kelola daftar mobil dan paket wisata Anda dengan mudah.
+      </p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-2xl shadow-xl">
+      <!-- Auth Section -->
+      <div
+        id="auth-section"
+        class="mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200"
+      >
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+          Masuk atau Daftar
+        </h2>
+        <form id="auth-form" class="space-y-4">
+          <div>
+            <input
+              type="email"
+              id="email"
+              placeholder="Alamat Email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              id="password"
+              placeholder="Kata Sandi"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+            />
+          </div>
+          <div class="flex justify-between items-center">
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+            >
+              Masuk / Daftar
+            </button>
+          </div>
+        </form>
+        <button
+          id="forgot-password-btn"
+          class="mt-2 text-sm text-blue-500 hover:text-blue-700 transition duration-200"
+        >
+          Lupa Kata Sandi?
+        </button>
+        <p id="auth-message" class="mt-4 text-center font-medium"></p>
+      </div>
+
+      <!-- App Section (Hidden until authenticated) -->
+      <div id="app-section" class="hidden">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold text-gray-800">Panel Admin</h2>
+          <button
+            id="logout-btn"
+            class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300 transform hover:scale-105"
+          >
+            Keluar
+          </button>
+        </div>
+
+        <!-- Tab System -->
+        <div class="flex space-x-2 mb-6 border-b border-gray-200">
+          <button
+            id="tab-cars"
+            class="tab-button active flex-1 py-3 px-6 text-sm font-semibold rounded-t-xl transition duration-300"
+          >
+            Manajemen Mobil
+          </button>
+          <button
+            id="tab-packages"
+            class="tab-button flex-1 py-3 px-6 text-sm font-semibold text-gray-600 rounded-t-xl hover:bg-gray-200 transition duration-300"
+          >
+            Manajemen Paket Wisata
+          </button>
+        </div>
+
+        <!-- Content for Cars -->
+        <div id="content-cars" class="tab-content">
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+              Daftar Mobil
+            </h3>
+            <ul id="car-list" class="space-y-4 mb-8">
+              <!-- Car items will be dynamically added here -->
+            </ul>
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+              Tambah Mobil Baru
+            </h3>
+            <form id="add-car-form" class="space-y-4">
+              <div>
+                <input
+                  type="text"
+                  id="car-name"
+                  placeholder="Nama Mobil (contoh: Toyota Avanza 2023)"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+                />
+              </div>
+              <div>
+                <textarea
+                  id="car-description"
+                  placeholder="Deskripsi Mobil (contoh: 7-seater, transmisi otomatis, cocok untuk keluarga)"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+              >
+                Tambah Mobil
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Content for Packages -->
+        <div id="content-packages" class="tab-content hidden">
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+              Daftar Paket Wisata
+            </h3>
+            <ul id="package-list" class="space-y-4 mb-8">
+              <!-- Package items will be dynamically added here -->
+            </ul>
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+              Tambah Paket Wisata Baru
+            </h3>
+            <form id="add-package-form" class="space-y-4">
+              <div>
+                <input
+                  type="text"
+                  id="package-name"
+                  placeholder="Nama Paket (contoh: Paket Wisata Bali 3 Hari)"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+                />
+              </div>
+              <div>
+                <textarea
+                  id="package-description"
+                  placeholder="Deskripsi Paket (contoh: Destinasi: Kuta, Ubud, Bedugul. Termasuk: hotel, mobil, guide.)"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+              >
+                Tambah Paket
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message Box / Modal -->
+    <div
+      id="message-modal"
+      class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full transform transition-all duration-300 scale-95"
+      >
+        <div class="text-center">
+          <h3 id="message-title" class="text-2xl font-bold mb-4"></h3>
+          <p id="message-content" class="text-gray-700 mb-6"></p>
+          <button
+            id="message-ok-btn"
+            class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div
+      id="forgot-password-modal"
+      class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full transform transition-all duration-300 scale-95"
+      >
+        <h3 class="text-2xl font-bold mb-4 text-center text-blue-600">
+          Reset Kata Sandi
+        </h3>
+        <p class="text-sm text-gray-600 mb-4 text-center">
+          Masukkan alamat email Anda untuk menerima tautan reset kata sandi.
+        </p>
+        <form id="forgot-password-form" class="space-y-4">
+          <div>
+            <input
+              type="email"
+              id="forgot-password-email"
+              placeholder="Alamat Email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+          >
+            Kirim Tautan Reset
+          </button>
+        </form>
+        <button
+          id="close-forgot-password-btn"
+          class="mt-4 w-full text-sm text-gray-500 hover:text-gray-700"
+        >
+          Batal
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading Spinner Modal -->
+    <div
+      id="loading-modal"
+      class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+    >
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 border-4 border-white rounded-full spinner"></div>
+        <p class="mt-4 text-white text-lg">Memuat...</p>
+      </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div
+      id="payment-modal"
+      class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full transform transition-all duration-300 scale-95"
+      >
+        <h3 class="text-2xl font-bold mb-4 text-center text-green-600">
+          Proses Pembayaran
+        </h3>
+        <p class="text-sm text-gray-600 mb-4 text-center">
+          Ini adalah simulasi proses pembayaran.
+        </p>
+        <div class="flex flex-col items-center space-y-4">
+          <p id="payment-status" class="text-lg font-semibold text-gray-800">
+            Sedang memproses...
+          </p>
+          <button
+            id="close-payment-btn"
+            class="mt-4 w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            Selesai
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Item Modal -->
+    <div
+      id="edit-modal"
+      class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full transform transition-all duration-300 scale-95"
+      >
+        <h3 class="text-2xl font-bold mb-4 text-center text-blue-600">
+          Edit Item
+        </h3>
+        <form id="edit-item-form" class="space-y-4">
+          <input type="hidden" id="edit-item-id" />
+          <div>
+            <label
+              for="edit-item-name"
+              class="block text-sm font-medium text-gray-700"
+              >Nama</label
+            >
+            <input
+              type="text"
+              id="edit-item-name"
+              required
+              class="w-full px-4 py-3 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+            />
+          </div>
+          <div>
+            <label
+              for="edit-item-description"
+              class="block text-sm font-medium text-gray-700"
+              >Deskripsi</label
+            >
+            <textarea
+              id="edit-item-description"
+              required
+              class="w-full px-4 py-3 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition duration-200"
+            ></textarea>
+          </div>
+          <div class="flex justify-end space-x-2">
+            <button
+              type="button"
+              id="close-edit-btn"
+              class="bg-gray-400 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-500 transition duration-300"
+            >
+              Batal
+            </button>
+            <button
+              type="submit"
+              class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
+            >
+              Simpan Perubahan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        signOut,
+        onAuthStateChanged,
+        sendPasswordResetEmail,
+        signInAnonymously,
+        signInWithCustomToken,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        doc,
+        addDoc,
+        onSnapshot,
+        updateDoc,
+        deleteDoc,
+        query,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+      // Global variables provided by the Canvas environment
+      const appId =
+        typeof __app_id !== "undefined" ? __app_id : "default-app-id";
+      const firebaseConfig = JSON.parse(
+        typeof __firebase_config !== "undefined" ? __firebase_config : "{}"
+      );
+      const initialAuthToken =
+        typeof __initial_auth_token !== "undefined"
+          ? __initial_auth_token
+          : null;
+
+      // --- Firebase Initialization ---
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+
+      let userId = null;
+      let isAuthReady = false;
+      let activeCollection = "cars"; // Default active collection
+
+      // --- UI Element Selectors ---
+      const authSection = document.getElementById("auth-section");
+      const appSection = document.getElementById("app-section");
+      const authForm = document.getElementById("auth-form");
+      const logoutBtn = document.getElementById("logout-btn");
+      const authMessage = document.getElementById("auth-message");
+      const messageModal = document.getElementById("message-modal");
+      const messageTitle = document.getElementById("message-title");
+      const messageContent = document.getElementById("message-content");
+      const messageOkBtn = document.getElementById("message-ok-btn");
+      const forgotPasswordBtn = document.getElementById("forgot-password-btn");
+      const forgotPasswordModal = document.getElementById(
+        "forgot-password-modal"
+      );
+      const forgotPasswordForm = document.getElementById(
+        "forgot-password-form"
+      );
+      const closeForgotPasswordBtn = document.getElementById(
+        "close-forgot-password-btn"
+      );
+      const loadingModal = document.getElementById("loading-modal");
+      const paymentModal = document.getElementById("payment-modal");
+      const closePaymentBtn = document.getElementById("close-payment-btn");
+      const paymentStatus = document.getElementById("payment-status");
+      const editModal = document.getElementById("edit-modal");
+      const editItemForm = document.getElementById("edit-item-form");
+      const closeEditBtn = document.getElementById("close-edit-btn");
+      const editItemIdInput = document.getElementById("edit-item-id");
+      const editItemNameInput = document.getElementById("edit-item-name");
+      const editItemDescInput = document.getElementById(
+        "edit-item-description"
+      );
+      const editModalTitle = document.querySelector("#edit-modal h3");
+      const editModalNameLabel = document.querySelector(
+        'label[for="edit-item-name"]'
+      );
+      const editModalDescLabel = document.querySelector(
+        'label[for="edit-item-description"]'
+      );
+
+      // Tab and Content Selectors
+      const tabCarsBtn = document.getElementById("tab-cars");
+      const tabPackagesBtn = document.getElementById("tab-packages");
+      const contentCars = document.getElementById("content-cars");
+      const contentPackages = document.getElementById("content-packages");
+      const carList = document.getElementById("car-list");
+      const packageList = document.getElementById("package-list");
+      const addCarForm = document.getElementById("add-car-form");
+      const addPackageForm = document.getElementById("add-package-form");
+
+      // --- Helper Functions ---
+      const showMessage = (title, content) => {
+        messageTitle.textContent = title;
+        messageContent.textContent = content;
+        messageModal.classList.add("open");
+      };
+
+      const hideMessage = () => {
+        messageModal.classList.remove("open");
+      };
+
+      const showLoading = () => {
+        loadingModal.classList.add("open");
+      };
+
+      const hideLoading = () => {
+        loadingModal.classList.remove("open");
+      };
+
+      const showPaymentModal = () => {
+        paymentModal.classList.add("open");
+      };
+
+      const hidePaymentModal = () => {
+        paymentModal.classList.remove("open");
+      };
+
+      const hideEditModal = () => {
+        editModal.classList.remove("open");
+      };
+
+      // --- Event Handlers ---
+      messageOkBtn.addEventListener("click", hideMessage);
+      closePaymentBtn.addEventListener("click", hidePaymentModal);
+      closeEditBtn.addEventListener("click", hideEditModal);
+
+      /**
+       * Toggles the UI visibility based on the authentication state.
+       * @param {object|null} user The authenticated user object or null.
+       */
+      const toggleUI = (user) => {
+        if (user) {
+          authSection.classList.add("hidden");
+          appSection.classList.remove("hidden");
+        } else {
+          authSection.classList.remove("hidden");
+          appSection.classList.add("hidden");
+        }
+      };
+
+      // --- Authentication Logic ---
+      authForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        showLoading();
+        const email = authForm.email.value;
+        const password = authForm.password.value;
+
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          // showMessage("Berhasil!", "Anda telah berhasil masuk."); // ❌ popup dihapus
+          console.log("Login berhasil"); // EDITED
+        } catch (error) {
+          if (
+            error.code === "auth/user-not-found" ||
+            error.code === "auth/wrong-password"
+          ) {
+            try {
+              await createUserWithEmailAndPassword(auth, email, password);
+              // showMessage("Berhasil!", "Akun baru telah dibuat dan Anda berhasil masuk."); // ❌ popup dihapus
+              console.log("Akun baru berhasil dibuat dan login berhasil"); // EDITED
+            } catch (createError) {
+              showMessage(
+                "Gagal",
+                `Gagal membuat akun: ${createError.message}`
+              );
+              console.error("Create user failed:", createError);
+            }
+          } else {
+            showMessage("Gagal", `Gagal masuk: ${error.message}`);
+            console.error("Sign in failed:", error);
+          }
+        } finally {
+          hideLoading();
+        }
+      });
+
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          await signOut(auth);
+          // showMessage("Keluar", "Anda telah berhasil keluar."); // ❌ popup dihapus
+          console.log("Logout berhasil"); // EDITED
+          carList.innerHTML = "";
+          packageList.innerHTML = "";
+        } catch (error) {
+          showMessage("Gagal", `Gagal keluar: ${error.message}`);
+          console.error("Logout failed:", error);
+        }
+      });
+
+      // --- Password Reset Logic ---
+      forgotPasswordBtn.addEventListener("click", () => {
+        forgotPasswordModal.classList.add("open");
+      });
+
+      closeForgotPasswordBtn.addEventListener("click", () => {
+        forgotPasswordModal.classList.remove("open");
+      });
+
+      forgotPasswordForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        showLoading();
+        const email = forgotPasswordForm.querySelector(
+          "#forgot-password-email"
+        ).value;
+
+        try {
+          await sendPasswordResetEmail(auth, email);
+          showMessage(
+            "Email Terkirim",
+            `Tautan reset kata sandi telah dikirim ke ${email}.`
+          );
+        } catch (error) {
+          showMessage("Gagal", `Gagal mengirim email reset: ${error.message}`);
+        } finally {
+          hideLoading();
+          forgotPasswordModal.classList.remove("open");
+        }
+      });
+
+      // --- Tab Switching Logic ---
+      const switchTab = (tabName) => {
+        // Update active state for buttons
+        tabCarsBtn.classList.remove("active");
+        tabPackagesBtn.classList.remove("active");
+        if (tabName === "cars") {
+          tabCarsBtn.classList.add("active");
+          contentCars.classList.remove("hidden");
+          contentPackages.classList.add("hidden");
+          activeCollection = "cars";
+        } else {
+          tabPackagesBtn.classList.add("active");
+          contentCars.classList.add("hidden");
+          contentPackages.classList.remove("hidden");
+          activeCollection = "travel_packages";
+        }
+      };
+
+      tabCarsBtn.addEventListener("click", () => switchTab("cars"));
+      tabPackagesBtn.addEventListener("click", () => switchTab("packages"));
+
+      // --- Firestore Realtime Data Listeners ---
+      const setupRealtimeListeners = () => {
+        if (!userId) {
+          console.error(
+            "User ID is not available. Cannot set up Firestore listeners."
+          );
+          return;
+        }
+
+        // Listener for Cars
+        const carsRef = collection(
+          db,
+          `artifacts/${appId}/users/${userId}/cars`
+        );
+        onSnapshot(
+          carsRef,
+          (snapshot) => {
+            carList.innerHTML = "";
+            snapshot.forEach((doc) => {
+              const car = { id: doc.id, ...doc.data() };
+              carList.appendChild(createListItem(car, "Mobil"));
+            });
+          },
+          (error) => {
+            console.error("Error getting real-time updates for cars:", error);
+          }
+        );
+
+        // Listener for Travel Packages
+        const packagesRef = collection(
+          db,
+          `artifacts/${appId}/users/${userId}/travel_packages`
+        );
+        onSnapshot(
+          packagesRef,
+          (snapshot) => {
+            packageList.innerHTML = "";
+            snapshot.forEach((doc) => {
+              const pkg = { id: doc.id, ...doc.data() };
+              packageList.appendChild(createListItem(pkg, "Paket"));
+            });
+          },
+          (error) => {
+            console.error(
+              "Error getting real-time updates for packages:",
+              error
+            );
+          }
+        );
+      };
+
+      const createListItem = (item, type) => {
+        const listItem = document.createElement("li");
+        listItem.className =
+          "bg-gray-100 p-4 rounded-lg flex flex-col sm:flex-row justify-between items-center transition duration-200 hover:bg-gray-200";
+        listItem.innerHTML = `
+                <div>
+                    <h4 class="font-bold text-lg">${item.name}</h4>
+                    <p class="text-sm text-gray-600">${item.description}</p>
+                </div>
+                <div class="mt-4 sm:mt-0 flex space-x-2">
+                    <button class="pay-btn bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300" data-id="${item.id}" data-type="${type}">Bayar</button>
+                    <button class="edit-btn bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300" data-id="${item.id}" data-type="${type}">Edit</button>
+                    <button class="delete-btn bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300" data-id="${item.id}" data-type="${type}">Hapus</button>
+                </div>
+            `;
+        return listItem;
+      };
+
+      // --- CRUD Operations ---
+      addCarForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!userId) {
+          showMessage("Error", "Anda harus masuk untuk menambahkan mobil.");
+          return;
+        }
+        showLoading();
+        const name = addCarForm["car-name"].value;
+        const description = addCarForm["car-description"].value;
+        try {
+          const carsRef = collection(
+            db,
+            `artifacts/${appId}/users/${userId}/cars`
+          );
+          await addDoc(carsRef, {
+            name,
+            description,
+            createdAt: new Date(),
+          });
+          addCarForm.reset();
+          showMessage("Berhasil!", "Mobil berhasil ditambahkan.");
+        } catch (error) {
+          showMessage("Error", `Gagal menambahkan mobil: ${error.message}`);
+          console.error("Add car failed:", error);
+        } finally {
+          hideLoading();
+        }
+      });
+
+      addPackageForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!userId) {
+          showMessage(
+            "Error",
+            "Anda harus masuk untuk menambahkan paket wisata."
+          );
+          return;
+        }
+        showLoading();
+        const name = addPackageForm["package-name"].value;
+        const description = addPackageForm["package-description"].value;
+        try {
+          const packagesRef = collection(
+            db,
+            `artifacts/${appId}/users/${userId}/travel_packages`
+          );
+          await addDoc(packagesRef, {
+            name,
+            description,
+            createdAt: new Date(),
+          });
+          addPackageForm.reset();
+          showMessage("Berhasil!", "Paket wisata berhasil ditambahkan.");
+        } catch (error) {
+          showMessage(
+            "Error",
+            `Gagal menambahkan paket wisata: ${error.message}`
+          );
+          console.error("Add package failed:", error);
+        } finally {
+          hideLoading();
+        }
+      });
+
+      // --- Edit Logic ---
+      editItemForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const itemId = editItemIdInput.value;
+        const newName = editItemNameInput.value;
+        const newDescription = editItemDescInput.value;
+
+        if (!userId || !itemId) {
+          showMessage("Error", "Gagal mengedit item.");
+          return;
+        }
+
+        showLoading();
+        try {
+          const itemDocRef = doc(
+            db,
+            `artifacts/${appId}/users/${userId}/${activeCollection}`,
+            itemId
+          );
+          await updateDoc(itemDocRef, {
+            name: newName,
+            description: newDescription,
+          });
+          hideEditModal();
+          showMessage("Berhasil!", "Item berhasil diperbarui.");
+        } catch (error) {
+          showMessage("Error", `Gagal memperbarui item: ${error.message}`);
+          console.error("Update item failed:", error);
+        } finally {
+          hideLoading();
+        }
+      });
+
+      // --- Payment Logic ---
+      const handlePayment = async (itemId) => {
+        showPaymentModal();
+        paymentStatus.textContent = "Mengirim permintaan pembayaran...";
+
+        // Simulasi untuk demonstrasi:
+        setTimeout(() => {
+          paymentStatus.textContent =
+            "Pembayaran sedang diproses di Payment Gateway...";
+        }, 2000);
+
+        setTimeout(() => {
+          paymentStatus.textContent = "Pembayaran berhasil. Terima kasih!";
+        }, 5000);
+      };
+
+      // Event delegation for all buttons in both lists
+      document.addEventListener("click", async (e) => {
+        const target = e.target;
+        if (!target.dataset.id) return;
+
+        const id = target.dataset.id;
+        const type = target.dataset.type;
+        let collectionName = "";
+        let itemTypeLabel = "";
+
+        if (type === "Mobil") {
+          collectionName = "cars";
+          itemTypeLabel = "mobil";
+        } else if (type === "Paket") {
+          collectionName = "travel_packages";
+          itemTypeLabel = "paket wisata";
+        } else {
+          return;
+        }
+
+        const itemDocRef = doc(
+          db,
+          `artifacts/${appId}/users/${userId}/${collectionName}`,
+          id
+        );
+
+        if (target.classList.contains("delete-btn")) {
+          const isConfirmed = window.confirm(
+            `Apakah Anda yakin ingin menghapus ${itemTypeLabel} ini?`
+          );
+          if (isConfirmed) {
+            showLoading();
+            try {
+              await deleteDoc(itemDocRef);
+              showMessage("Berhasil!", `${itemTypeLabel} berhasil dihapus.`);
+            } catch (error) {
+              showMessage(
+                "Error",
+                `Gagal menghapus ${itemTypeLabel}: ${error.message}`
+              );
+              console.error(`Delete ${itemTypeLabel} failed:`, error);
+            } finally {
+              hideLoading();
+            }
+          }
+        } else if (target.classList.contains("edit-btn")) {
+          showLoading();
+          try {
+            const docSnap = await getDoc(itemDocRef);
+            if (docSnap.exists()) {
+              const itemData = docSnap.data();
+              editItemIdInput.value = id;
+              editItemNameInput.value = itemData.name;
+              editItemDescInput.value = itemData.description;
+              editModalTitle.textContent = `Edit ${itemTypeLabel}`;
+              editModalNameLabel.textContent = `Nama ${itemTypeLabel}`;
+              editModalDescLabel.textContent = `Deskripsi ${itemTypeLabel}`;
+              editModal.classList.add("open");
+            } else {
+              showMessage("Error", "Dokumen tidak ditemukan.");
+            }
+          } catch (error) {
+            showMessage("Error", `Gagal memuat data edit: ${error.message}`);
+            console.error("Load edit data failed:", error);
+          } finally {
+            hideLoading();
+          }
+        } else if (target.classList.contains("pay-btn")) {
+          handlePayment(id);
+        }
+      });
+    </script>
+  </body>
+</html>

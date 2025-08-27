@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Paket Bulanan - Sinatriatrans</title>
+    <meta
+      name="description"
+      content="Detail lengkap paket sewa mobil harian dari Sinatriatrans."
+    />
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/1a56db/ffffff?text=ST"
+      type="image/x-icon"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a56db",
+              secondary: "#0e7490",
+              accent: "#f59e0b",
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      html,
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      .message-box {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        z-index: 1000;
+        text-align: center;
+        max-width: 90%;
+        width: 400px;
+      }
+      .message-box-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Custom Message Box -->
+    <div id="messageBoxOverlay" class="message-box-overlay"></div>
+    <div id="messageBox" class="message-box">
+      <p id="messageBoxContent" class="text-lg font-semibold mb-4"></p>
+      <button
+        id="messageBoxClose"
+        class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300"
+      >
+        Tutup
+      </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav
+      class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
+    >
+      <div class="px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+        <!-- Logo/Brand -->
+        <a href="#home" class="flex items-center space-x-3">
+          <img
+            src="images/logo.png"
+            alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
+            class="h-10 w-auto object-contain"
+          />
+          <span
+            class="text-white text-3xl font-bold tracking-wider hover:text-gray-100 transition duration-300"
+          >
+            Sinatriatrans
+          </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-white focus:outline-none p-2 rounded-md hover:bg-blue-700 transition duration-300"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="mobile-menu-icon-open"
+                class="hidden"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+              <path
+                id="mobile-menu-icon-close"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div id="desktop-menu" class="hidden lg:flex items-center space-x-8">
+          <ul class="lg:flex lg:space-x-8 space-y-4 lg:space-y-0 mt-4 lg:mt-0">
+            <li>
+              <a
+                href="/"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Beranda
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#travel-packages"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Paket Travel
+              </a>
+            </li>
+            <li>
+              <a
+                href="/rental-list.html"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Rental Mobil
+              </a>
+            </li>
+            <li>
+              <a
+                href="/booking-page.html"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Pemesanan
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#tentang-kami"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#kontak"
+                class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+              >
+                Kontak
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Overlay (untuk tampilan mobile saat dibuka) -->
+      <div
+        id="mobile-menu-overlay"
+        class="lg:hidden bg-secondary mt-4 p-4 rounded-lg shadow-inner hidden"
+      >
+        <ul class="flex flex-col space-y-4">
+          <li>
+            <a
+              href="/"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Beranda
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#travel-packages"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Paket Travel
+            </a>
+          </li>
+          <li>
+            <a
+              href="/rental-list.html"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Rental Mobil
+            </a>
+          </li>
+          <li>
+            <a
+              href="/booking-page.html"
+              class="text-white hover:text-gray-200 transition duration-300 text-lg font-medium"
+            >
+              Pemesanan
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#tentang-kami"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Tentang Kami
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#kontak"
+              class="block text-white hover:text-gray-200 transition duration-300 text-lg font-medium py-2 px-3 rounded-md hover:bg-blue-600 mobile-menu-item"
+            >
+              Kontak
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Konten -->
+    <main
+      class="flex-grow relative bg-cover bg-center flex items-center justify-center text-white pt-40 pb-20"
+      style="
+        background-image: url('images/prambanan.jpg');
+        background-attachment: fixed;
+        min-height: 800px;
+      "
+    >
+      <div class="container mx-auto overflow-y-auto p-4 flex flex-col items-center text-center justify-center">
+        <h1 class="text-5xl font-extrabold h-auto text-center text-gray-800 mb-12">
+          Detail Paket Bulanan
+        </h1>
+        <div
+          class="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8"
+        >
+          <img
+            src="images/logo.png"
+            alt="Paket Harian"
+            class="w-full md:w-1/2 h-auto rounded-lg object-cover shadow-md"
+          />
+          <div class="md:w-1/2">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Paket Bulanan</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Layanan ini adalah penyewaan kendaraan untuk jangka waktu lama,
+              yaitu bulan hingga tahun. Jenis layanan khusus untuk perusahaan
+              yang mencari rental mobil buat operasional tertentu. Pada layanan
+              ini kamipun akan melakukan perawatan rutin terhadap kendaraan
+              secara berkala
+            </p>
+            <p class="text-2xl font-bold text-primary mb-6">
+              Harga: Mulai Rp 2.2 Juta
+            </p>
+            <a
+              href="booking-page.html?package=harian"
+              class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Pesan Sekarang
+            </a>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <a
+            href="/#travel-packages"
+            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-full transition duration-300"
+          >
+            Kembali ke Paket Travel
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+   <footer class="bg-gradient-to-r from-primary to-secondary py-8 mt-15">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-2xl item-center text-white font-bold mb-4">Sinatriatrans</h3>
+        <p class="text-gray-200 mb-2">
+          Jl. Semail No.RT.03, Mredo, Bangunharjo, Kec. Sewon, Kabupaten Bantul,
+          Daerah Istimewa Yogyakarta 55185
+        </p>
+        <p class="text-gray-200 mb-4">Email: info@sinatriatrans.com</p>
+        <div class="flex justify-center space-x-6 mb-4">
+          <a
+            href="#"
+            class="text-gray-200 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-facebook-f"></i>
+            <span class="sr-only">Facebook</span>
+          </a>
+          <a
+            href="#"
+            class="text-gray-200 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-instagram"></i>
+            <span class="sr-only">Instagram</span>
+          </a>
+          <a
+            href="#"
+            class="text-gray-200 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-twitter"></i>
+            <span class="sr-only">Twitter</span>
+          </a>
+        </div>
+        <p class="text-gray-200 text-sm">
+          &copy; <span id="current-year"></span> Sinatriatrans. All rights
+          reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Custom Message Box Logic (for consistency)
+      const messageBox = document.getElementById("messageBox");
+      const messageBoxOverlay = document.getElementById("messageBoxOverlay");
+      const messageBoxContent = document.getElementById("messageBoxContent");
+      const messageBoxClose = document.getElementById("messageBoxClose");
+
+      function showMessageBox(message) {
+        messageBoxContent.textContent = message;
+        messageBox.style.display = "block";
+        messageBoxOverlay.style.display = "block";
+      }
+
+      messageBoxClose.addEventListener("click", () => {
+        messageBox.style.display = "none";
+        messageBoxOverlay.style.display = "none";
+      });
+
+      // Navbar Mobile Toggle (reused from index.html)
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenuOverlay = document.getElementById(
+          "mobile-menu-overlay"
+        );
+        const mobileMenuIconOpen = document.getElementById(
+          "mobile-menu-icon-open"
+        );
+        const mobileMenuIconClose = document.getElementById(
+          "mobile-menu-icon-close"
+        );
+        const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
+
+        mobileMenuButton.addEventListener("click", () => {
+          const isHidden = mobileMenuOverlay.classList.contains("hidden");
+          if (isHidden) {
+            mobileMenuOverlay.classList.remove("hidden");
+            mobileMenuIconOpen.classList.remove("hidden");
+            mobileMenuIconClose.classList.add("hidden");
+          } else {
+            mobileMenuOverlay.classList.add("hidden");
+            mobileMenuIconOpen.classList.add("hidden");
+            mobileMenuIconClose.classList.remove("hidden");
+          }
+        });
+
+        mobileMenuItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            mobileMenuOverlay.classList.add("hidden");
+            mobileMenuIconOpen.classList.add("hidden");
+            mobileMenuIconClose.classList.remove("hidden");
+          });
+        });
+
+        // Set current year in footer
+        const currentYearSpan = document.getElementById("current-year");
+        if (currentYearSpan) {
+          currentYearSpan.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
+  </body>
+</html>

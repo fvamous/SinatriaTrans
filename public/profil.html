@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Saya - SinatriaTrans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div
+      class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md text-center"
+    >
+      <h2 class="text-3xl font-bold mb-6">Profil Saya</h2>
+
+      <!-- Foto Profil -->
+      <img
+        id="user-photo"
+        src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+        alt="Foto Profil"
+        class="w-24 h-24 mx-auto rounded-full border-4 border-blue-500 mb-4"
+      />
+
+      <!-- Data User -->
+      <p id="user-name" class="text-xl font-semibold mb-2">Nama Lengkap</p>
+      <p id="user-email" class="text-gray-600 mb-1">email@example.com</p>
+      <p id="user-uid" class="text-xs text-gray-400 mb-6">UID: ...</p>
+
+      <!-- Form Edit Profil -->
+      <div class="text-left mt-6">
+        <label class="block mb-2 font-semibold">Ubah Nama</label>
+        <input
+          type="text"
+          id="edit-name"
+          class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <label class="block mb-2 font-semibold">Ubah Foto (URL)</label>
+        <input
+          type="text"
+          id="edit-photo"
+          placeholder="https://contoh.com/foto.jpg"
+          class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <!-- Upload Foto ke Storage -->
+        <label class="block mb-2 font-semibold">Upload Foto Baru</label>
+        <input
+          type="file"
+          id="upload-photo"
+          accept="image/*"
+          class="w-full mb-4 text-sm"
+        />
+
+        <button
+          id="save-profile"
+          class="w-full bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition"
+        >
+          Simpan Perubahan
+        </button>
+      </div>
+
+      <!-- Tombol Logout -->
+      <button
+        id="logout-button"
+        class="w-full bg-red-500 text-white py-3 rounded-xl font-semibold hover:bg-red-600 transition mt-6"
+      >
+        Keluar
+      </button>
+
+      <!-- Status -->
+      <p id="status" class="mt-4 text-center text-sm text-gray-600"></p>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+        updateProfile,
+      } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+      import {
+        getStorage,
+        ref,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD5aNiMrA_edl2jvh_aag6ZVVRppON6CeQ",
+        authDomain: "sinatriatrans-efeb8.firebaseapp.com",
+        projectId: "sinatriatrans-efeb8",
+        storageBucket: "sinatriatrans-efeb8.appspot.com", // 🔹 perbaiki: storageBucket harus pakai domain ini
+        messagingSenderId: "58510444136",
+        appId: "1:58510444136:web:250c02bc10211215095ddd",
+        measurementId: "G-M5VWY97KX2",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const storage = getStorage(app);
+
+      const photoEl = document.getElementById("user-photo");
+      const nameEl = document.getElementById("user-name");
+      const emailEl = document.getElementById("user-email");
+      const uidEl = document.getElementById("user-uid");
+      const editNameEl = document.getElementById("edit-name");
+      const editPhotoEl = document.getElementById("edit-photo");
+      const uploadInput = document.getElementById("upload-photo");
+      const statusEl = document.getElementById("status");
+
+      let currentUser = null;
+      let uploadedFile = null;
+
+      // 🔹 Cek status user
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          currentUser = user;
+          nameEl.textContent = user.displayName || "Nama belum diatur";
+          emailEl.textContent = user.email;
+          uidEl.textContent = "UID: " + user.uid;
+          if (user.photoURL) {
+            photoEl.src = user.photoURL;
+          }
+          editNameEl.value = user.displayName || "";
+          editPhotoEl.value = user.photoURL || "";
+        } else {
+          window.location.href = "login-page.html";
+        }
+      });
+
+      // 🔹 Simpan perubahan profil
+      document
+        .getElementById("save-profile")
+        .addEventListener("click", async () => {
+          if (!currentUser) return;
+          const newName = editNameEl.value.trim();
+          let newPhotoURL = editPhotoEl.value.trim();
+
+          // kalau user upload foto baru → upload ke Storage
+          if (uploadedFile) {
+            const storageRef = ref(
+              storage,
+              `profile_photos/${currentUser.uid}`
+            );
+            try {
+              await uploadBytes(storageRef, uploadedFile);
+              newPhotoURL = await getDownloadURL(storageRef);
+              statusEl.textContent = "✅ Foto berhasil diupload!";
+            } catch (err) {
+              statusEl.textContent = "❌ Gagal upload foto: " + err.message;
+              return;
+            }
+          }
+
+          updateProfile(currentUser, {
+            displayName: newName || currentUser.displayName,
+            photoURL: newPhotoURL || currentUser.photoURL,
+          })
+            .then(() => {
+              statusEl.textContent = "✅ Profil berhasil diperbarui!";
+              nameEl.textContent = newName || currentUser.displayName;
+              if (newPhotoURL) photoEl.src = newPhotoURL;
+            })
+            .catch((error) => {
+              statusEl.textContent = "❌ Gagal update: " + error.message;
+            });
+        });
+
+      // 🔹 Simpan file yang dipilih
+      uploadInput.addEventListener("change", (e) => {
+        uploadedFile = e.target.files[0];
+      });
+
+      // 🔹 Logout
+      document.getElementById("logout-button").addEventListener("click", () => {
+        signOut(auth)
+          .then(() => {
+            window.location.href = "login-page.html";
+          })
+          .catch((error) => {
+            alert("❌ Gagal logout: " + error.message);
+          });
+      });
+    </script>
+  </body>
+</html>

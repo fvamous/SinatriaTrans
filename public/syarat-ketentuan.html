@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syarat dan Ketentuan - Sinatriatrans</title>
+    <meta
+      name="description"
+      content="Syarat dan ketentuan penggunaan layanan Sinatriatrans."
+    />
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/1a56db/ffffff?text=ST"
+      type="image/x-icon"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a56db",
+              secondary: "#0e7490",
+              accent: "#f59e0b",
+            },
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      html,
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Header/Navbar -->
+    <header
+      class="bg-gradient-to-r from-primary to-secondary p-4 shadow-lg fixed w-full z-50 top-0"
+    >
+      <div class="px-4 py-4 flex justify-between items-center">
+        <a href="#home" class="flex items-center space-x-3">
+          <img
+            src="images/logo.png"
+            alt="Blue stylized ST logo above bold blue TRANSPOT text on a white background, representing a professional and energetic transportation brand"
+            class="h-10 w-auto object-contain"
+          />
+          <span
+            class="text-white text-3xl font-bold tracking-wider hover:text-gray-100 transition duration-300"
+          >
+            Sinatriatrans
+          </span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-6">
+          <a
+            href="/"
+            class="text-white hover:text-primary transition-colors duration-300"
+            >Beranda</a
+          >
+          <a
+            href="/rental-list.html"
+            class="text-white hover:text-primary transition-colors duration-300"
+            >Sewa Mobil</a
+          >
+          <a
+            href="/#travel-packages"
+            class="text-white hover:text-primary transition-colors duration-300"
+            >Paket Travel</a
+          >
+        </nav>
+        <button
+          id="mobile-menu-button"
+          class="lg:hidden text-gray-600 focus:outline-none"
+          aria-label="Toggle mobile menu"
+        >
+          <i id="mobile-menu-icon-open" class="fas fa-bars text-2xl"></i>
+          <i
+            id="mobile-menu-icon-close"
+            class="fas fa-times text-2xl hidden"
+          ></i>
+        </button>
+      </div>
+      <div
+        id="mobile-menu-overlay"
+        class="lg:hidden bg-secondary mt-4 p-4 rounded-lg shadow-inner hidden"
+      >
+        <div class="flex flex-col h-full space-y-8">
+          <a
+            href="/"
+            class="mobile-menu-item text-white text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Beranda</a
+          >
+          <a
+            href="/rental-list.html"
+            class="mobile-menu-item text-white text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Sewa Mobil</a
+          >
+          <a
+            href="/#travel-packages"
+            class="mobile-menu-item text-white text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
+            >Paket Travel</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 mt-20">
+      <h1 class="text-4xl font-bold text-center text-primary mb-10">
+        Syarat dan Ketentuan
+      </h1>
+      <div class="prose max-w-none">
+        <p class="text-gray-600 text-lg">
+          Selamat datang di Sinatriatrans. Dengan menggunakan layanan kami, Anda
+          setuju untuk terikat oleh syarat dan ketentuan berikut. Harap baca
+          dengan saksama.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">
+          1. Layanan yang Kami Sediakan
+        </h2>
+        <p>
+          Sinatriatrans menyediakan layanan sewa mobil dan paket perjalanan.
+          Layanan ini mencakup:
+        </p>
+        <ul class="list-disc list-inside">
+          <li>
+            <strong>Sewa Mobil:</strong> Penyewaan mobil dengan berbagai pilihan
+            durasi (harian, mingguan, bulanan).
+          </li>
+          <li>
+            <strong>Paket Perjalanan:</strong> Paket perjalanan yang dapat
+            disesuaikan untuk kebutuhan pribadi atau bisnis.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">
+          2. Pemesanan dan Pembayaran
+        </h2>
+        <h3 class="text-xl font-bold mt-4 mb-2">2.1. Proses Pemesanan</h3>
+        <ul class="list-disc list-inside">
+          <li>
+            Semua pemesanan harus dilakukan melalui formulir pemesanan resmi
+            kami atau kontak yang tertera di situs web.
+          </li>
+          <li>
+            Pemesanan akan dianggap sah setelah konfirmasi dari pihak
+            Sinatriatrans.
+          </li>
+          <li>
+            Anda akan menerima detail konfirmasi melalui email atau kontak yang
+            Anda berikan.
+          </li>
+        </ul>
+        <h3 class="text-xl font-bold mt-4 mb-2">2.2. Pembayaran</h3>
+        <ul class="list-disc list-inside">
+          <li>Pembayaran dapat dilakukan melalui metode yang kami sediakan.</li>
+          <li>
+            Syarat dan waktu pembayaran akan dijelaskan saat proses konfirmasi
+            pemesanan.
+          </li>
+          <li>
+            <strong>Pembatalan:</strong> Syarat pembatalan dan pengembalian dana
+            akan bervariasi tergantung pada jenis layanan dan waktu pembatalan.
+            Detail akan diberikan saat konfirmasi pemesanan.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">3. Tanggung Jawab Pengguna</h2>
+        <ul class="list-disc list-inside">
+          <li>
+            <strong>Identitas dan Data:</strong> Anda bertanggung jawab untuk
+            memberikan data pribadi yang akurat dan valid saat melakukan
+            pemesanan.
+          </li>
+          <li>
+            <strong>Penggunaan Layanan:</strong> Anda harus menggunakan layanan
+            kami sesuai dengan hukum yang berlaku dan tidak menggunakan layanan
+            kami untuk kegiatan ilegal.
+          </li>
+          <li>
+            <strong>Sewa Mobil:</strong> Jika Anda menyewa mobil, Anda
+            bertanggung jawab penuh atas mobil selama masa sewa. Anda harus
+            memiliki SIM yang valid dan mematuhi semua peraturan lalu lintas.
+            Kerusakan atau kehilangan mobil selama masa sewa adalah tanggung
+            jawab Anda.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">
+          4. Hak dan Kewajiban Sinatriatrans
+        </h2>
+        <ul class="list-disc list-inside">
+          <li>
+            <strong>Penyediaan Layanan:</strong> Kami berhak untuk mengganti
+            armada atau mengubah detail paket perjalanan jika diperlukan, dengan
+            pemberitahuan sebelumnya.
+          </li>
+          <li>
+            <strong>Pembatalan oleh Kami:</strong> Sinatriatrans berhak
+            membatalkan pemesanan jika terjadi keadaan di luar kendali kami atau
+            jika pengguna tidak memenuhi syarat dan ketentuan yang ditetapkan.
+          </li>
+          <li>
+            <strong>Kerahasian Data:</strong> Kami berkomitmen untuk menjaga
+            kerahasian data pribadi Anda sesuai dengan kebijakan privasi kami.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">5. Hukum yang Berlaku</h2>
+        <p class="text-gray-600">
+          Syarat dan ketentuan ini diatur dan ditafsirkan sesuai dengan hukum
+          yang berlaku di Indonesia. Setiap perselisihan yang timbul akan
+          diselesaikan melalui musyawarah.
+        </p>
+
+        <p class="text-gray-600 mt-6">
+          Dengan melanjutkan penggunaan layanan kami, Anda dianggap telah
+          membaca, memahami, dan menyetujui semua syarat dan ketentuan di atas.
+        </p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-primary to-secondary py-12 mt-20">
+      <div class="px-4 py-8 text-center">
+        <h3 class="text-2xl text-white font-bold mb-4">Sinatriatrans</h3>
+        <p class="text-gray-300 mb-2">
+          Jl. Semail No.RT.03, Mredo, Bangunharjo, Kec. Sewon, Kabupaten Bantul,
+          Daerah Istimewa Yogyakarta 55185
+        </p>
+        <p class="text-gray-300 mb-4">Email: info@sinatriatrans.com</p>
+        <div class="flex justify-center space-x-6 mb-4">
+          <a
+            href="#"
+            class="text-gray-300 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-facebook-f"></i>
+            <span class="sr-only">Facebook</span>
+          </a>
+          <a
+            href="#"
+            class="text-gray-300 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-instagram"></i>
+            <span class="sr-only">Instagram</span>
+          </a>
+          <a
+            href="#"
+            class="text-gray-300 hover:text-white transition duration-300"
+          >
+            <i class="fab fa-twitter"></i>
+            <span class="sr-only">Twitter</span>
+          </a>
+        </div>
+        <p class="text-gray-200 text-sm">
+          &copy; <span id="current-year"></span> Sinatriatrans. All rights
+          reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Script for dynamic content and interactivity -->
+    <script>
+      function showMessageBox(message) {
+        const messageBox = document.createElement("div");
+        messageBox.className =
+          "fixed inset-0 flex items-center justify-center z-50 p-4";
+        messageBox.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full text-center">
+                    <p class="text-lg font-semibold text-gray-800 mb-4">${message}</p>
+                    <button onclick="this.parentNode.parentNode.remove()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">Tutup</button>
+                </div>
+            `;
+        document.body.appendChild(messageBox);
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenuOverlay = document.getElementById(
+          "mobile-menu-overlay"
+        );
+        const mobileMenuIconOpen = document.getElementById(
+          "mobile-menu-icon-open"
+        );
+        const mobileMenuIconClose = document.getElementById(
+          "mobile-menu-icon-close"
+        );
+        const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
+        function toggleMobileMenu() {
+          mobileMenuOverlay.classList.toggle("hidden");
+          mobileMenuIconOpen.classList.toggle("hidden");
+          mobileMenuIconClose.classList.toggle("hidden");
+        }
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener("click", toggleMobileMenu);
+        }
+        mobileMenuItems.forEach((item) => {
+          item.addEventListener("click", toggleMobileMenu);
+        });
+        const currentYearSpan = document.getElementById("current-year");
+        if (currentYearSpan) {
+          currentYearSpan.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
+  </body>
+</html>
