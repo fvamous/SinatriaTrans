@@ -7,3 +7,5 @@ echo "dist/" >> .gitignore
 git add .gitignore
 git commit -m "chore: Ignore build artifacts"
 echo "*.DS_Store" >> .gitignore
+.env.local
+firebase-admin-key.json
