@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/v1/:path*",
+      "destination": "https://sinatriatrans-9xbquy4fw-fvx.vercel.app/api/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "x-custom-header",
+          "value": "Vercel-Headers"
+        }
+      ]
+    }
+  ]
+}
