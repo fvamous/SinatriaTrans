@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import prisma from "@/lib/prisma";
+import { authOptions } from "./auth/[...nextauth]"; // Perbaikan path relatif
+import prisma from "../../lib/prisma"; // Perbaikan path relatif
 
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
