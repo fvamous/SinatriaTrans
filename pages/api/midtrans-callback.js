@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import midtransClient from "midtrans-client";
+import prisma from "../../lib/prisma"; // Perbaikan path
+import midtransClient from "midtrans-client"; // Ini akan berfungsi setelah Anda menginstal paket
 
 const apiClient = new midtransClient.CoreApi({
   isProduction: false,
