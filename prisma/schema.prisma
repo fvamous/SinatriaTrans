@@ -1,3 +1,5 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,31 +9,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-}
-
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?
-  access_token       String?
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -41,21 +33,46 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-
-  user User @relation(fields: [userId], references: [id])
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String    @default("client") // Role can be "client" or "admin"
+  accounts      Account[]
+  sessions      Session[]
+  orders        Order[]
+}
 
-  @@unique([identifier, token])
-  
-}model TravelOrder {
-  id        String   @id @default(cuid())
-  userEmail String
-  paketId   String
-  status    String   @default("pending")
-  createdAt DateTime @default(now())
+// Model baru untuk menyimpan data mobil
+model Car {
+  id           String         @id @default(cuid())
+  make         String // Merek mobil (ex: Toyota)
+  model        String // Model mobil (ex: Avanza)
+  licensePlate String         @unique // Plat nomor unik
+  isAvailable  Boolean        @default(true) // Status ketersediaan
+  dailyPrice   Float // Harga per hari
+  weeklyPrice  Float // Harga per minggu
+  monthlyPrice Float // Harga per bulan
+  orders       Order[]
+}
+
+// Model untuk menyimpan data pesanan
+model Order {
+  id          String      @id @default(cuid())
+  userId      String
+  carId       String
+  orderStatus String      @default("pending") // Status pesanan: "pending", "accepted", "rejected", "paid"
+  startDate   DateTime
+  endDate     DateTime
+  totalPrice  Float
+  paymentToken String? // Token dari Midtrans
+  paymentStatus String? @default("pending") // Status pembayaran: "pending", "settlement", "expire"
+
+  user        User        @relation(fields: [userId], references: [id])
+  car         Car         @relation(fields: [carId], references: [id])
 }
