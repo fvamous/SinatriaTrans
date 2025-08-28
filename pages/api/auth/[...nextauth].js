@@ -1,22 +1,19 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 
 export const authOptions = {
-  adapter: PrismaAdapter(prisma),
+  // Hanya gunakan provider Google
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+  // Ganti strategi sesi dari 'database' menjadi 'jwt'
+  // Ini tidak akan menyimpan sesi di database
   session: {
-    strategy: "database",
+    strategy: "jwt",
   },
-  // opsi tambahan NextAuth
 };
 
 export default NextAuth(authOptions);
