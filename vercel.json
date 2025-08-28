@@ -1,19 +1,19 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/api/v1/:path*",
-      "destination": "https://sinatriatrans-9xbquy4fw-fvx.vercel.app/api/:path*"
+      "src": "next.config.js",
+      "use": "@vercel/next@2"
     }
   ],
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "x-custom-header",
-          "value": "Vercel-Headers"
-        }
-      ]
+      "src": "/_next/static/(.*)",
+      "dest": "/_next/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
     }
   ]
 }
